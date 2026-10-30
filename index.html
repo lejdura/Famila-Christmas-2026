@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en"><head><style id="qw-theme">:root {
+  --color-bg: #faf9fc;
+  --color-text: #131920;
+  --color-navbar-bg: #f9f9fb;
+  --color-bg-chat-view: #fcfcfd;
+  --color-bg-secondary: #fff;
+  --color-bg-tertiary: #f9fafb;
+  --color-bg-hover: #f3f4f6;
+  --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-active: #e5e7eb;
+  --color-border: #0000001f;
+  --color-border-light: #0000000f;
+  --color-border-strong: #d1d5db;
+  --color-primary: #4200db;
+  --color-primary-dark: #35009e;
+  --color-primary-light: #8575ff;
+  --color-primary-bg: #e8e6ff;
+  --color-primary-hover-border: #35009e;
+  --color-nav-icon-active: #4200db;
+  --color-nav-hover-border: #4200db;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent);
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent);
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent);
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent);
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent);
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent);
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent);
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent);
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent);
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent);
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent);
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent);
+  --color-focus-ring: color-mix(in srgb, #4200db 50%, transparent);
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent);
+  --block-hover-outline: 1px dashed color-mix(in srgb, #4200db 50%, transparent);
+  --block-selected-outline: 1px solid #8575ff;
+  --block-selection-outline-offset: 2px;
+  --block-selected-halo: 0 0 8px color-mix(in srgb, #4200db 40%, transparent);
+  --color-accent: #4200db;
+  --color-accent-foreground: #4200db;
+  --color-accent-dark: #35009e;
+  --color-accent-light: #e8e6ff;
+  --color-accent-inverse: #fff;
+  --color-link: #4200db;
+  --color-primary-gradient-end: #e8e6ff;
+  --color-primary-bg-solid: #e8e6ff;
+  --color-user-bubble: #f3f3f7;
+  --color-user-bubble-text: #131920;
+  --color-text-secondary: #5e5e5e;
+  --color-text-tertiary: #656871;
+  --color-text-muted: #9ca3af;
+  --color-text-on-primary: #fff;
+  --color-success: #00802f;
+  --color-success-dark: #00471e;
+  --color-success-light: #d9ffd6;
+  --color-success-hover: #005c26;
+  --color-success-bg: #e6f5eb;
+  --color-success-border: #b3d9bf;
+  --color-success-foreground: #00802f;
+  --color-success-dark-foreground: #00471e;
+  --color-success-text: #00471e;
+  --color-error: #db0000;
+  --color-error-dark: #700000;
+  --color-error-light: #ffe0e0;
+  --color-error-hover: #ffe0e0;
+  --color-error-bg: #fceaea;
+  --color-error-border: #f2cccc;
+  --color-error-active-border: #db0000;
+  --color-error-foreground: #db0000;
+  --color-error-dark-foreground: #700000;
+  --color-error-inverse: #fff;
+  --color-error-text: #700000;
+  --color-warning: #f2b100;
+  --color-warning-dark: #573a00;
+  --color-warning-light: #fffbbd;
+  --color-warning-hover: #db9200;
+  --color-warning-bg: #fef7e6;
+  --color-warning-border: #f9dfa3;
+  --color-warning-foreground: #f2b100;
+  --color-warning-dark-foreground: #573a00;
+  --color-warning-inverse: #573a00;
+  --color-surface-warning: #fffbbd;
+  --color-text-warning: #573a00;
+  --color-info: #006ce0;
+  --color-info-dark: #002a66;
+  --color-info-light: #d1f1ff;
+  --color-info-hover: #003b8f;
+  --color-info-bg: #ebf3fc;
+  --color-info-border: #b3d1f0;
+  --color-info-foreground: #006ce0;
+  --color-info-dark-foreground: #002a66;
+  --color-info-inverse: #fff;
+  --color-overlay: #00000080;
+  --color-shadow: #00000014;
+  --color-hover: #0000000d;
+  --color-tooltip-bg: #000000d9;
+  --color-tooltip-text: #fff;
+  --color-voice-purple: #8575ff;
+  --color-voice-purple-dark: #4200db;
+  --color-voice-purple-light: #8575ff;
+  --color-voice-red: #db0000;
+  --color-voice-red-dark: #700000;
+  --color-voice-amber: #f2b100;
+  --color-voice-purple-glow: #4200db66;
+  --color-voice-red-glow: #db000066;
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  --text-2xs: .5625rem;
+  --text-xs: .625rem;
+  --text-sm: .6875rem;
+  --text-base: .75rem;
+  --text-md: .8125rem;
+  --text-lg: .875rem;
+  --text-xl: 1rem;
+  --text-2xl: 1.125rem;
+  --text-3xl: 1.25rem;
+  --text-4xl: 1.5rem;
+  --text-5xl: 2rem;
+  --spacing-1: calc(.25rem * 1);
+  --spacing-1-5: calc(.25rem * 1.5);
+  --spacing-2: calc(.25rem * 2);
+  --spacing-3: calc(.25rem * 3);
+  --spacing-4: calc(.25rem * 4);
+  --spacing-5: calc(.25rem * 5);
+  --spacing-6: calc(.25rem * 6);
+  --spacing-7: calc(.25rem * 7);
+  --spacing-8: calc(.25rem * 8);
+  --spacing-9: calc(.25rem * 9);
+  --spacing-10: calc(.25rem * 10);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 8px;
+  --shadow-sm: 0 1px 2px #0000000d;
+  --shadow-md: 0 4px 12px #00000014;
+  --color-success-bg-solid: #d9ffd6;
+  --color-error-bg-solid: #ffe0e0;
+  --color-error-border-solid: #ffe0e0;
+  --color-warning-bg-solid: #fffbbd;
+  --color-warning-text: #573a00;
+  --color-info-bg-solid: #d1f1ff;
+  --color-info-bg-solid-alt: #d1f1ff;
+  --color-info-text: #002a66;
+  --color-info-text-alt: #002a66;
+  --color-emerald: #10b981;
+  --color-teal: #4ecdc4;
+  --color-code-bg: #f3f3f7;
+  --color-code-header-bg: #f1f3f5;
+  --color-code-text: #24292e;
+  --color-code-border: #e1e4e8;
+  --color-code-muted: #6a737d;
+  --color-inline-code-bg: #f3f3f7;
+  --color-inline-code-text: #24292e;
+  --color-inline-code-border: #e1e4e8;
+  --color-scrollbar-thumb: #d1d5db;
+  --color-scrollbar-track: transparent;
+  --color-graph-node-text: #333;
+  --color-graph-node-text-dim: #7f8c8d;
+  --color-graph-edge-default: #95a5a6;
+  --color-graph-edge-cross: #e67e22;
+  --color-graph-edge-text: #666;
+  --color-graph-edge-stroke: #fff;
+  --color-graph-highlight-bg: #ff6b6b;
+  --color-graph-highlight-border: #e74c3c;
+  --color-graph-search-bg: gold;
+  --color-graph-search-border: orange;
+  --color-graph-focus-border: #c0392b;
+  --color-graph-external-border: #95a5a6;
+  --color-graph-cat-file: #3498db;
+  --color-graph-cat-folder: #7f8c8d;
+  --color-graph-cat-file-aggregate: #2980b9;
+  --color-graph-cat-class: #9b59b6;
+  --color-graph-cat-function: #2ecc71;
+  --color-graph-cat-method: #1abc9c;
+  --color-graph-cat-variable: #f39c12;
+  --color-graph-cat-import: #d35400;
+  --color-graph-cat-module: #5b6abf;
+  --color-graph-cat-concept: #e74c3c;
+  --color-graph-cat-person: #ff6b6b;
+  --color-graph-cat-org: #4ecdc4;
+  --color-graph-cat-organization: #4ecdc4;
+  --color-graph-cat-product: #a29bfe;
+  --color-graph-cat-metric: #fd79a8;
+  --color-graph-cat-location: #34495e;
+  --color-graph-cat-date: #e056a0;
+  --color-graph-cat-code: #3498db;
+  --color-graph-cat-doc: #7f8c8d;
+  --color-graph-cat-url: #00b894;
+  --color-graph-cat-email: #6c5ce7;
+  --color-graph-cat-unknown: #bdc3c7;
+  --color-graph-rel-contains: #bdc3c7;
+  --color-graph-rel-extends: #9b59b6;
+  --color-graph-rel-implements: #3498db;
+  --color-graph-rel-imports: #e67e22;
+  --color-graph-rel-uses: #2ecc71;
+  --color-graph-rel-calls: #27ae60;
+  --color-graph-rel-references: #f39c12;
+  --color-graph-rel-related-to: #95a5a6;
+  --color-graph-rel-works-on: #e74c3c;
+  --color-graph-rel-owns: #1abc9c;
+  --color-graph-rel-depends-on: #e67e22;
+  --color-graph-rel-parent-of: #bdc3c7;
+  --qs-content: #fff;
+  --qs-main: #fff;
+  --qs-primary-foreground: #131920;
+  --qs-secondary-foreground: #656871;
+  --qs-tertiary-foreground: #9ca3af;
+  --qs-placeholder-foreground: #8c8c94;
+  --qs-divider: #dedee3;
+  --qs-default-border: #8c8c94;
+  --qs-neutral-soft: #b4b4bb;
+  --qs-neutral-gray-50: #f9fafb;
+  --qs-tertiary-background: #f9fafb;
+  --qs-action-hover: #f3f3f7;
+  --qs-primary-default: #4200db;
+  --qs-primary-dark: #35009e;
+  --qs-primary-light: #e8e6ff;
+  --qs-success-default: #00802f;
+  --qs-error-default: #db0000;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --safe-top: 0px;
+  --safe-bottom: 0px;
+  --safe-left: 0px;
+  --safe-right: 0px;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  --qs-font-base-letter-spacing: .15px;
+  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029;
+  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029;
+  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029;
+  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029;
+  --qs-width-modal-sm: 384px;
+  --qs-width-modal-md: 600px;
+  --qs-width-modal-lg: 1136px;
+  --qs-grid-gap: 16px;
+  --qs-grid-gap-xl: 24px;
+  --qs-primary-medium: #8575ff;
+  --qs-primary-inverse: #fff;
+  --qs-neutral-lightest: #f9f9fb;
+  --qs-neutral-light: #f3f3f7;
+  --qs-neutral-default: #dedee3;
+  --qs-neutral-medium: #8c8c94;
+  --qs-neutral-deep: #656871;
+  --qs-neutral-dark: #333843;
+  --qs-neutral-strong: #131920;
+  --qs-neutral-white: #fff;
+  --qs-neutral-black: #000;
+  --qs-success-medium: #005c26;
+  --qs-success-dark: #00471e;
+  --qs-success-light: #d9ffd6;
+  --qs-success-inverse: #fff;
+  --qs-info-default: #006ce0;
+  --qs-info-medium: #003b8f;
+  --qs-info-dark: #002a66;
+  --qs-info-light: #d1f1ff;
+  --qs-info-inverse: #fff;
+  --qs-warning-default: #f2b100;
+  --qs-warning-medium: #db9200;
+  --qs-warning-dark: #573a00;
+  --qs-warning-light: #fffbbd;
+  --qs-warning-inverse: #573a00;
+  --qs-warning-experimental: #f2b100;
+  --qs-warning-experimental-light: #fffbbd;
+  --qs-warning-experimental-light-foreground: #fffbbd;
+  --qs-error-medium: #900;
+  --qs-error-dark: #700000;
+  --qs-error-light: #ffe0e0;
+  --qs-error-inverse: #fff;
+  --qs-connection-default: #db3300;
+  --qs-connection-soft: #ff997a;
+  --qs-connection-light: #ffe0d6;
+  --qs-connection-dark: #661800;
+  --qs-automation-default: #b3008f;
+  --qs-automation-medium: #d600ba;
+  --qs-automation-soft: #ff94f1;
+  --qs-automation-light: #ffe0fb;
+  --qs-automation-dark: #660052;
+  --qs-insight-default: #a000b8;
+  --qs-insight-soft: #f299ff;
+  --qs-insight-light: #fce6ff;
+  --qs-insight-dark: #590066;
+  --qs-visualization-default: #7300e5;
+  --qs-visualization-soft: #d4a8ff;
+  --qs-visualization-light: #f2e5ff;
+  --qs-visualization-dark: #45008a;
+  --qs-spice: #ff9800;
+  --qs-coachmark: #006ce0;
+  --qs-brand: #fff;
+  --qs-brand-foreground: #131920;
+  --qs-brand-navbar: #131920;
+  --qs-brand-navbar-foreground: #fff;
+  --qs-brand-navbar-light: #dedee3;
+  --qs-brand-navbar-dark: #000;
+  --qs-application-navbar: #4200db;
+  --qs-application-navbar-foreground: #fff;
+  --qs-application-navbar-light: #e8e6ff;
+  --qs-application-navbar-dark: #35009e;
+  --qs-dimension: #4200db;
+  --qs-dimension-foreground: #fff;
+  --qs-dimension-experimental: #4200db;
+  --qs-dimension-experimental-foreground: #4200db;
+  --qs-measure: #00802f;
+  --qs-measure-foreground: #fff;
+  --qs-measure-experimental: #f2b100;
+  --qs-measure-experimental-foreground: #f2b100;
+  --qs-content-inverse: #333843;
+  --qs-content-inverse-active: #131920;
+  --qs-secondary: #dedee3;
+  --qs-disabled: #8c8c94;
+  --qs-divider-light: #f3f3f7;
+  --qs-hover-border: #333843;
+  --qs-active-border: #4200db;
+  --qs-disabled-border: #dedee3;
+  --qs-error-border: #ffe0e0;
+  --qs-error-active-border: #db0000;
+  --qs-disabled-foreground: #b4b4bb;
+  --qs-primary-inverse-foreground: #fff;
+  --qs-error-foreground: #db0000;
+  --qs-contrast-foreground: #131920;
+  --qs-main-foreground: #131920;
+  --qs-main-secondary-foreground: #656871;
+  --qs-action-disabled: #f3f3f7;
+  --qs-action-active: #e8e6ff;
+  --qs-default-badge: #dedee3;
+  --qs-tag-default: #dedee3;
+  --qs-tag-soft-border: #b4b4bb;
+  --qs-focus-offset: 1px;
+  --qs-toggle-tile-sm: calc(.25rem * 8);
+  --qs-toggle-tile-md: calc(.25rem * 12);
+  --qs-toggle-tile-lg: calc(.25rem * 15);
+  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029;
+  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029;
+  --react-pdf-text-layer: 1;
+  --highlight-bg-color: #b400aa;
+  --highlight-selected-bg-color: #006400;
+  --react-pdf-annotation-layer: 1;
+  --annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+  --input-focus-border-color: Highlight;
+  --input-focus-outline: 1px solid Canvas;
+  --input-unfocused-border-color: transparent;
+  --input-disabled-border-color: transparent;
+  --input-hover-border-color: black;
+  --link-outline: none;
+  color-scheme: light;
+}
+body { background: var(--color-bg); color: var(--color-text); }
+a { color: var(--color-link, var(--color-primary)); }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Christmas Gift Exchange - Posada Edition</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Fredoka:wght@500;600;700&display=swap');
+
+  :root {
+    --color-bg: #fff6e8;
+    --color-bg-secondary: #ffffff;
+    --color-text: #3a2419;
+    --color-text-secondary: #6b4a35;
+    --color-text-muted: #a9846a;
+    --color-border-light: #ffe0b0;
+    --color-border: #f3b65a;
+    --pink: #e91e63;
+    --hot-pink: #ff2e92;
+    --orange: #ff8c1a;
+    --yellow: #ffc700;
+    --green: #00a86b;
+    --teal: #019587;
+    --red: #e3342f;
+    --purple: #9c3fe4;
+    --radius-md: 18px;
+    --radius-sm: 14px;
+    --font-display: 'Baloo 2', sans-serif;
+    --font-body: 'Fredoka', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--color-bg);
+    background-image:
+      radial-gradient(circle at 10% 15%, rgba(255,140,26,0.12) 0, transparent 35%),
+      radial-gradient(circle at 90% 10%, rgba(233,30,99,0.12) 0, transparent 35%),
+      radial-gradient(circle at 50% 95%, rgba(0,168,107,0.10) 0, transparent 40%);
+    font-family: var(--font-body);
+    color: var(--color-text);
+    margin: 0;
+    padding: 26px 16px 70px;
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+  }
+  .wrap { max-width: 680px; width: 100%; }
+
+  .papel { text-align: center; font-size: 38px; margin-bottom: 6px; letter-spacing: 6px; }
+
+  .header { text-align: center; margin-bottom: 26px; }
+  .header h1 {
+    font-family: var(--font-display);
+    font-size: 62px;
+    margin: 6px 0 8px;
+    color: var(--pink);
+    text-shadow: 2px 2px 0 var(--yellow), -1px -1px 0 var(--teal);
+    line-height: 1.15;
+  }
+  .header .sub { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--green); margin: 0 0 10px; }
+  .header p { color: var(--color-text-secondary); font-size: 17px; margin: 0; font-weight: 500; }
+
+  .card {
+    background: var(--color-bg-secondary);
+    border: 3px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 26px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 0 rgba(227,52,47,0.15), 0 2px 10px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+      var(--pink) 0 14px, var(--yellow) 14px 28px, var(--teal) 28px 42px,
+      var(--orange) 42px 56px, var(--purple) 56px 70px, var(--red) 70px 84px);
+  }
+
+  .field { margin-bottom: 24px; }
+  .field:last-child { margin-bottom: 0; }
+  label { display: block; font-family: var(--font-display); font-weight: 700; font-size: 19px; margin-bottom: 8px; color: var(--color-text); }
+  .hint { font-size: 14px; color: var(--color-text-muted); margin: 2px 0 10px; font-weight: 500; }
+  input[type="text"], input[type="number"] {
+    width: 100%; padding: 13px 14px; border: 2.5px solid var(--color-border); border-radius: var(--radius-sm);
+    font-size: 18px; font-family: var(--font-body); font-weight: 500; background: #fffaf0; color: var(--color-text);
+  }
+  input:focus { outline: 3px solid var(--pink); outline-offset: 1px; }
+
+  .name-email-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .name-email-row .field { flex: 1; min-width: 200px; margin-bottom: 0; }
+
+  .radio-group, .amount-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .radio-option { flex: 1; min-width: 140px; }
+  .radio-option input { display: none; }
+  .radio-option label {
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 14px 14px; border: 2.5px solid var(--color-border); border-radius: var(--radius-sm);
+    font-family: var(--font-display); font-weight: 700; font-size: 17px; cursor: pointer;
+    transition: all 0.15s ease; margin: 0; color: var(--color-text-secondary); background: #fffaf0;
+  }
+  .radio-option input:checked + label {
+    background: linear-gradient(135deg, var(--pink), var(--orange)); color: #fff; border-color: var(--pink);
+    transform: scale(1.03) rotate(-0.5deg); box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+  }
+  .radio-option:nth-child(2) input:checked + label { background: linear-gradient(135deg, var(--teal), var(--green)); border-color: var(--teal); }
+
+  .amount-inputs { display: flex; align-items: center; gap: 10px; }
+  .amount-inputs input { width: 110px; }
+  .amount-inputs span { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--orange); }
+
+  textarea {
+    width: 100%; padding: 13px 14px; border: 2.5px solid var(--color-border); border-radius: var(--radius-sm);
+    font-size: 17px; font-family: var(--font-body); background: #fffaf0; color: var(--color-text);
+    resize: vertical; min-height: 80px;
+  }
+
+  .submit-btn {
+    width: 100%; padding: 18px; background: linear-gradient(135deg, var(--pink), var(--red)); color: #fff;
+    border: none; border-radius: var(--radius-sm); font-family: var(--font-display); font-size: 22px;
+    font-weight: 800; cursor: pointer; transition: transform 0.15s ease; box-shadow: 0 4px 0 rgba(0,0,0,0.15); letter-spacing: 0.5px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); }
+  .submit-btn:active { transform: translateY(1px); box-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+
+  .section-title {
+    font-family: var(--font-display); font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #fff; margin: -26px -24px 18px -24px; padding: 10px 24px 8px; font-weight: 800;
+    background: linear-gradient(135deg, var(--teal), var(--green));
+  }
+  .section-title.lim { background: linear-gradient(135deg, var(--orange), var(--yellow)); color: var(--color-text); }
+  .section-title.santa { background: linear-gradient(135deg, var(--red), var(--pink)); }
+  .section-title.gifts { background: linear-gradient(135deg, var(--purple), var(--hot-pink)); }
+
+  .resp-card {
+    border-left: 6px solid var(--pink); background: var(--color-bg-secondary); border-radius: var(--radius-sm);
+    padding: 16px 18px; margin-bottom: 14px; font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .resp-card .name { font-family: var(--font-display); font-weight: 800; font-size: 20px; margin-bottom: 8px; color: var(--pink); }
+  .resp-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--color-border-light); }
+  .resp-row:last-child { border-bottom: none; }
+  .resp-row .k { color: var(--color-text-muted); font-weight: 500; }
+  .resp-row .v { font-weight: 700; text-align: right; max-width: 60%; }
+
+  .toolbar { display: flex; gap: 12px; margin-bottom: 18px; }
+  .toolbar button, .toolbar label.file-btn {
+    flex: 1; padding: 14px; border-radius: var(--radius-sm); border: 2.5px solid var(--color-border);
+    background: var(--color-bg-secondary); font-family: var(--font-display); font-size: 16px; font-weight: 700;
+    text-align: center; cursor: pointer; color: var(--color-text);
+  }
+  .empty-state { text-align: center; color: var(--color-text-muted); font-size: 16px; padding: 24px; font-weight: 500; }
+  .toggle-link { text-align: center; margin-top: 14px; font-size: 17px; font-family: var(--font-display); font-weight: 700; color: var(--teal); cursor: pointer; }
+  .banner {
+    background: linear-gradient(135deg, #fff0d6, #ffe4ef); border: 2.5px dashed var(--orange); border-radius: var(--radius-sm);
+    padding: 14px 18px; font-size: 15px; color: var(--color-text-secondary); margin-bottom: 20px; font-weight: 500;
+  }
+
+  .vote-card {
+    background: linear-gradient(135deg, #fff0d6, #ffe8f2); border: 3px dashed var(--pink); border-radius: var(--radius-md);
+    padding: 24px; margin-bottom: 22px; text-align: center;
+  }
+  .vote-card h2 { font-family: var(--font-display); font-size: 24px; color: var(--pink); margin: 0 0 4px; }
+  .vote-card .vote-hint { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 16px; font-weight: 500; }
+  .vote-options { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .vote-btn {
+    flex: 1; min-width: 140px; max-width: 200px; padding: 18px 10px; border: 3px solid var(--color-border);
+    border-radius: var(--radius-sm); background: #fffaf0; font-family: var(--font-display); font-size: 22px;
+    font-weight: 800; cursor: pointer; color: var(--color-text); transition: transform 0.15s ease;
+  }
+  .vote-btn:hover { transform: translateY(-2px) scale(1.03); }
+  .vote-btn.selected { background: linear-gradient(135deg, var(--teal), var(--green)); color: #fff; border-color: var(--teal); }
+  .vote-tally { margin-top: 16px; font-size: 14px; color: var(--color-text-muted); font-weight: 600; }
+  .vote-bar-wrap { margin-top: 14px; text-align: left; }
+  .vote-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+  .vote-bar-track { flex: 1; background: #fff0da; border-radius: 10px; height: 20px; overflow: hidden; border: 2px solid var(--color-border-light); }
+  .vote-bar-fill { height: 100%; border-radius: 10px 0 0 10px; transition: width 0.3s ease; }
+
+  .tab-bar { display: flex; gap: 10px; margin-bottom: 22px; background: #fff0da; padding: 6px; border-radius: var(--radius-sm); border: 2.5px solid var(--color-border); }
+  .tab-btn {
+    flex: 1; padding: 12px 8px; border: none; border-radius: 10px; background: transparent;
+    font-family: var(--font-display); font-weight: 700; font-size: 16px; cursor: pointer; color: var(--color-text-secondary); transition: all 0.15s ease;
+  }
+  .tab-btn.active { background: linear-gradient(135deg, var(--pink), var(--orange)); color: #fff; box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
+
+  .faq-item {
+    background: var(--color-bg-secondary); border: 2.5px solid var(--color-border-light); border-left: 6px solid var(--teal);
+    border-radius: var(--radius-sm); padding: 16px 18px; margin-bottom: 14px;
+  }
+  .faq-item .q { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--pink); margin-bottom: 6px; }
+  .faq-item .a { font-size: 15px; color: var(--color-text); font-weight: 500; line-height: 1.4; }
+  .faq-item .faq-del { float: right; background: none; border: none; color: var(--color-text-muted); cursor: pointer; font-size: 14px; font-weight: 700; }
+  .faq-add-card input, .faq-add-card textarea { margin-bottom: 10px; }
+
+  .party-columns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .party-col {
+    flex: 1;
+    min-width: 230px;
+    background: #fffaf0;
+    border: 3px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .party-col.c50 { border-color: var(--teal); background: linear-gradient(180deg, #e8fbf4, #fffaf0 40%); }
+  .party-col.c75 { border-color: var(--pink); background: linear-gradient(180deg, #ffe8f2, #fffaf0 40%); }
+  .party-col h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin: 0 0 4px;
+  }
+  .party-col.c50 h3 { color: var(--teal); }
+  .party-col.c75 h3 { color: var(--pink); }
+  .party-col .party-count { font-size: 14px; color: var(--color-text-muted); font-weight: 600; margin-bottom: 14px; }
+  .party-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .party-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 72px;
+  }
+  .party-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 2.5px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    margin-bottom: 4px;
+  }
+  .party-person .pname { font-size: 11px; font-weight: 700; color: var(--color-text-secondary); text-align: center; line-height: 1.2; word-break: break-word; }
+  .avatar-f { background: linear-gradient(135deg, #ff9ecb, #ff5fa2); }
+  .avatar-m { background: linear-gradient(135deg, #7ec8ff, #3b8fe0); }
+  .avatar-n { background: linear-gradient(135deg, #ffd166, #ffb347); }
+.tally-group { margin-bottom: 18px; }
+  .tally-group:last-child { margin-bottom: 0; }
+  .tally-group-title {
+    font-family: var(--font-display); font-weight: 700; font-size: 15px;
+    color: var(--color-text); margin-bottom: 8px;
+  }
+  .tally-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 13px; }
+  .tally-label { flex: 0 0 150px; color: var(--color-text-secondary); font-weight: 600; }
+  .tally-bar-track { flex: 1; background: #fff0da; border-radius: 10px; height: 16px; overflow: hidden; border: 1.5px solid var(--color-border-light); }
+  .tally-bar-fill { height: 100%; border-radius: 10px 0 0 10px; background: linear-gradient(135deg, var(--pink), var(--orange)); transition: width 0.3s ease; }
+  .tally-count { flex: 0 0 24px; text-align: right; font-weight: 800; color: var(--color-text); }
+
+  .opt-out-row {
+    margin-top: 16px; padding-top: 14px; border-top: 1.5px dashed var(--color-border-light);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .opt-out-text { font-size: 13px; color: var(--color-text-muted); font-weight: 500; }
+  .opt-out-btn {
+    background: #fff0da; border: 2px solid var(--color-border); border-radius: var(--radius-sm);
+    padding: 8px 14px; font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    color: var(--color-text-secondary); cursor: pointer; white-space: nowrap;
+  }
+  .opt-out-btn:hover { background: var(--color-border-light); }
+  #optOutBanner {
+    background: linear-gradient(135deg, #ffe4ef, #fff0d6);
+    border: 2.5px dashed var(--pink); border-radius: var(--radius-sm);
+    padding: 16px 18px; font-size: 15px; color: var(--color-text); margin: 16px 0 0;
+    font-weight: 600; text-align: center; display: none;
+  }
+  #optOutBanner.show { display: block; }
+
+  .kid-entry {
+    background: #fffaf0; border: 2.5px solid var(--color-border); border-radius: var(--radius-sm);
+    padding: 16px; margin-bottom: 14px; position: relative;
+  }
+  .kid-entry-remove {
+    position: absolute; top: 10px; right: 10px; background: none; border: none;
+    color: var(--color-text-muted); cursor: pointer; font-size: 13px; font-weight: 700;
+  }
+  .kid-entry label {
+    font-size: 15px; margin-bottom: 4px;
+  }
+  .kid-entry .field { margin-bottom: 12px; }
+  .kid-entry input[type="text"] {
+    padding: 9px 11px; font-size: 15px;
+  }
+  .kid-entry textarea {
+    padding: 9px 11px; font-size: 14px; min-height: 55px;
+  }
+  .kid-count-badge {
+    display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 12px;
+    color: var(--color-text-muted); margin-left: 6px;
+  }
+
+  .blurb-card { padding-top: 18px; }
+  .blurb-text {
+    font-size: 15px; line-height: 1.5; color: var(--color-text); margin: 6px 0 10px; font-weight: 500;
+  }
+  .blurb-extra {
+    font-size: 13px; color: var(--color-text-secondary); margin: 4px 0; font-weight: 500;
+    border-top: 1px dashed var(--color-border-light); padding-top: 6px;
+  }
+  .blurb-extra:first-of-type { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="papel">🌹✨🎄✨🌹</div>
+  <div class="header">
+    <h1>¡Intercambio Navideño!</h1>
+    <div class="sub">Family Christmas Gift Exchange 🎁</div>
+    <p>Fill this out so we can plan the exchange — one entry per person, ¡con mucho gusto!</p>
+  </div>
+
+  <div class="banner">
+    🎉 <b>Hey familia!</b> Everyone fills this out on their own phone or computer, let's have some fun with it! Polls are open until <b>11/10/26</b>, so take your time and enjoy the process. 🎅
+  </div>
+
+  <div class="tab-bar">
+    <button type="button" class="tab-btn active" id="tabBtnForm" onclick="showTab('form')">📝 Form</button>
+    <button type="button" class="tab-btn" id="tabBtnFaq" onclick="showTab('faq')">❓ FAQ</button>
+  </div>
+
+  <div id="formView">
+    <form id="pollForm">
+      <div class="card">
+        <div class="name-email-row">
+          <div class="field">
+            <label for="name">🙋 Your Name</label>
+            <input type="text" id="name" required="" placeholder="e.g. Tía Carol">
+          </div>
+          <div class="field">
+            <label for="email">📧 Your Email</label>
+            <input type="text" id="email" placeholder="e.g. tia.carol@email.com">
+          </div>
+        </div>
+        <div class="opt-out-row">
+          <span class="opt-out-text">Not feeling up for the exchange this year? No pressure at all.</span>
+          <button type="button" class="opt-out-btn" onclick="optOut()">💜 Thanks, but no thanks — love you!</button>
+        </div>
+        <div id="optOutBanner"></div>
+      </div>
+
+      <div class="vote-card">
+        <h2>🖱️ Quick Group Vote: What's the limit?</h2>
+        <div class="vote-hint">Pick ONE — this is just for the whole-family spending limit. Your pick gets saved into your response file below.</div>
+        <div class="vote-options">
+          <button type="button" class="vote-btn" data-amount="50" onclick="selectVote(this)">$50</button>
+          <button type="button" class="vote-btn" data-amount="75" onclick="selectVote(this)">$75</button>
+        </div>
+        <div class="vote-tally" id="voteTallyMsg">Your vote will be included when you save your response below. ⬇️</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title lim">💸 Spending Limit</div>
+        <div class="field">
+          <label>Are you flexible or firm on the amount?</label>
+          <div class="radio-group" id="flexGroup">
+            <div class="radio-option">
+              <input type="radio" name="flex" id="flex-flexible" value="Flexible" checked="">
+              <label for="flex-flexible">🌊 Flexible</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="flex" id="flex-firm" value="Firm">
+              <label for="flex-firm">🔒 Firm</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" id="flexibleFieldWrap">
+          <label for="suggestedLimit">Suggested limit ($)</label>
+          <div class="hint">A ballpark — open to adjusting.</div>
+          <input type="number" id="suggestedLimit" min="0" step="5" placeholder="e.g. 50">
+        </div>
+
+        <div class="field" id="firmFieldWrap" style="display:none;">
+          <label>Firm range ($)</label>
+          <div class="hint">e.g. between $50 and $75 — no going above or below.</div>
+          <div class="amount-inputs">
+            <input type="number" id="firmMin" min="0" step="5" placeholder="Min">
+            <span>a</span>
+            <input type="number" id="firmMax" min="0" step="5" placeholder="Max">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title santa">🎅 Santa Style</div>
+        <div class="field">
+          <label>Do you want your gift exchange to be a secret?</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="secretmode" id="secretmode-yes" value="Yes, keep it a secret" checked="">
+              <label for="secretmode-yes">🤫 Yes, secret</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="secretmode" id="secretmode-no" value="No, I want to know who my Santa is">
+              <label for="secretmode-no">👀 No, tell me</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title gifts">🎁 Gift Preferences</div>
+        <div class="field">
+          <label>Do you want to give gift ideas to your Santa?</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="ideas" id="ideas-yes" value="Yes" checked="">
+              <label for="ideas-yes">💡 Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="ideas" id="ideas-no" value="No, surprise me">
+              <label for="ideas-no">🎊 Surprise me</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Would you like a meeting/chat with your gift recipient?</label>
+          <div class="hint">e.g. a quick call to understand what they'd like.</div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="meeting" id="meeting-yes" value="Yes" checked="">
+              <label for="meeting-yes">📞 Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="meeting" id="meeting-no" value="No">
+              <label for="meeting-no">😥 No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Open to a variety / gift basket instead of one single gift?</label>
+          <div class="hint">e.g. a canasta with a few smaller fun items rather than one big thing.</div>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="variety" id="variety-yes" value="Yes, a gift basket / variety is great" checked="">
+              <label for="variety-yes">🧺 Yes, variety!</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="variety" id="variety-no" value="No, prefer one single gift">
+              <label for="variety-no">🎯 One gift</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="noBuy">🚫 Please DON'T buy me...</label>
+          <div class="hint">Duplicates, allergens, scents, or anything you're just not into this year.</div>
+          <textarea id="noBuy" placeholder="e.g. no candles, already have a waffle maker, allergic to shea butter..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="notes">📝 Anything else? (sizes, allergies, interests, ideas)</label>
+          <textarea id="notes" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title gifts">👶 Tell Me About Your Kid</div>
+        <div class="hint" style="margin-bottom:14px;">For little ones too young to fill this out themselves — add likes, dislikes, sizes, interests, and anything to avoid. Each kid is saved separately for whoever's shopping.</div>
+        <div id="kidEntries"></div>
+        <button type="button" class="opt-out-btn" onclick="addKidEntry()" style="margin-top:6px;">➕ Add a Kid</button>
+      </div>
+
+      <div class="toolbar" style="margin-bottom:16px;">
+        <button type="button" onclick="clearForm()">🔄 Clear Form</button>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">🎉 ¡Guardar! Save My Response 🎉</button>
+      <div id="saveConfirmBanner" style="display:none;"></div>
+      <div class="toggle-link" onclick="showTab('results')">📊 See how everyone is voting →</div>
+    </form>
+  </div>
+
+  <div id="resultsView" style="display:none;">
+    <div class="toolbar">
+      <button type="button" id="refreshFromSheetBtn" onclick="loadFromSheet()">🔄 Refresh from Sheet</button>
+      <button type="button" onclick="exportAllCSV()">⬇️ Export All as CSV (for organizer)</button>
+      <button type="button" onclick="exportKidsCSV()">👶 Export Kids List (for organizer)</button>
+    </div>
+    <div id="voteSummary"></div>
+
+    <div id="quickTally"></div>
+
+<div id="responsesContainer">
+      <div class="empty-state">No responses yet — once people fill out the form, their answers will show up here automatically! 🎄</div>
+    </div>
+    <div class="section-title gifts" style="margin-top:22px;">👶 Kids — Quick Reference</div>
+    <div id="kidResponsesContainer">
+      <div class="empty-state">No kid entries yet.</div>
+    </div>
+    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
+  </div>
+
+    <div id="partyView" style="display:none;">
+    <div class="card">
+      <div class="section-title santa">🎉 Vote Party — Who's Voting What</div>
+      <div class="hint" style="margin-bottom:16px;">Load response files in the Responses tab first, then come here to see everyone's vote as a little character.</div>
+      <div class="party-columns">
+        <div class="party-col c50">
+          <h3>$50 Team</h3>
+          <div class="party-count" id="partyCount50">0 votes</div>
+          <div class="party-grid" id="partyGrid50"></div>
+        </div>
+        <div class="party-col c75">
+          <h3>$75 Team</h3>
+          <div class="party-count" id="partyCount75">0 votes</div>
+          <div class="party-grid" id="partyGrid75"></div>
+        </div>
+      </div>
+    </div>
+    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
+  </div>
+
+  <div id="faqView" style="display:none;">
+    <div class="card">
+      <div class="section-title gifts">❓ Quick Reference / FAQ</div>
+      <div id="faqList"></div>
+    </div>
+
+    <div class="card faq-add-card">
+      <div class="section-title lim">➕ Add Your Own Question</div>
+      <div class="field">
+        <label for="faqQInput">Question</label>
+        <input type="text" id="faqQInput" placeholder="e.g. What if I can't find my person's size?">
+      </div>
+      <div class="field">
+        <label for="faqAInput">Answer</label>
+        <textarea id="faqAInput" placeholder="Write the answer here..."></textarea>
+      </div>
+      <button type="button" class="submit-btn" onclick="addFaq()">➕ Add to FAQ</button>
+    </div>
+    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
+  </div>
+
+</div>
+
+<script>
+  var defaultFaqs = [
+    { q: "What if I don't know what to get my person?", a: "Check their response for gift ideas and notes! If they said 'surprise me,' ask the organizer for hints, or lean on the 'Please don't buy me' list to avoid duplicates." },
+    { q: "Can I go over the spending limit?", a: "If the group picked 'Firm,' please stay within the agreed range. If you're 'Flexible,' a little over is usually fine, just don't go wild." },
+    { q: "What counts as a 'gift basket' / variety gift?", a: "Think a themed bundle, e.g. a coffee lover's basket (mug + beans + treat), a cozy night-in basket (blanket + candle + snacks), or a few small related items instead of one big gift." },
+    { q: "I want to change my answers after I submitted, what do I do?", a: "Just fill out the form again with your new answers and save a new file, tell the organizer to use your latest one." },
+    { q: "When is the exchange / reveal happening?", a: "Ask your organizer for the exact date, add it here once it's decided!" },
+    { q: "What happens if the group vote on the spending limit is a tie?", a: "Ask the organizer to break the tie, or default to the lower amount ($50) to keep things easy on everyone's wallet." },
+    { q: "Do I have to vote on the spending limit AND fill out the rest of the form?", a: "Yes, please do both! The vote decides the group's limit, and the rest of your answers tell your Santa about you specifically." },
+    { q: "I submitted my response but want to see everyone else's answers, where do I look?", a: "Click 'View all saved responses' at the bottom of the form (the organizer needs to have loaded everyone's files first)." },
+    { q: "Can kids / non-adults participate?", a: "Sure! Just have a parent help fill out the form, or set a lower spending limit vote if that works better for the family." },
+    { q: "What if I'm allergic to something but forgot to list it in 'Please DON'T buy me'?", a: "Go back to the Form tab, use 'Load My Response to Edit' to pull your saved file back in, add it, and save again." },
+    { q: "Is my email address shared with everyone?", a: "No, only the organizer collecting response files sees it, it's just so they can reach you if there are questions about your gift or wishlist." },
+    { q: "What if my gift recipient and I both want to meet up, but live far apart?", a: "A phone call or video chat works just as well as meeting in person, the goal is just getting a feel for what they'd like." },
+    { q: "Someone already left for the holidays, how do they vote or submit?", a: "They can still fill out this page from their phone or laptop anywhere, it works the same without needing to be home." }
+  ];
+  var faqs = JSON.parse(JSON.stringify(defaultFaqs));
+
+  function renderFaqs() {
+    var list = document.getElementById('faqList');
+    list.innerHTML = faqs.map(function(f, i) {
+      return '<div class="faq-item">' +
+        '<button class="faq-del" onclick="removeFaq(' + i + ')">remove</button>' +
+        '<div class="q">' + escapeHtml(f.q) + '</div>' +
+        '<div class="a">' + escapeHtml(f.a) + '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function addFaq() {
+    var q = document.getElementById('faqQInput').value.trim();
+    var a = document.getElementById('faqAInput').value.trim();
+    if (!q || !a) { alert('Please fill in both the question and answer.'); return; }
+    faqs.push({ q: q, a: a });
+    document.getElementById('faqQInput').value = '';
+    document.getElementById('faqAInput').value = '';
+    renderFaqs();
+  }
+
+  function removeFaq(i) {
+    faqs.splice(i, 1);
+    renderFaqs();
+  }
+
+  function showTab(tab) {
+    document.getElementById('formView').style.display = tab === 'form' ? 'block' : 'none';
+    document.getElementById('resultsView').style.display = tab === 'results' ? 'block' : 'none';
+    document.getElementById('partyView').style.display = tab === 'party' ? 'block' : 'none';
+    document.getElementById('faqView').style.display = tab === 'faq' ? 'block' : 'none';
+    document.getElementById('tabBtnForm').classList.toggle('active', tab === 'form');
+    document.getElementById('tabBtnFaq').classList.toggle('active', tab === 'faq');
+    if (tab === 'party') { renderParty(); }
+    if (tab === 'results' && sheetConfigured()) { loadFromSheet(); }
+  }
+
+  var selectedVote = null;
+  function selectVote(btn) {
+    var allBtns = document.querySelectorAll('.vote-btn');
+    for (var i = 0; i < allBtns.length; i++) { allBtns[i].classList.remove('selected'); }
+    btn.classList.add('selected');
+    selectedVote = btn.getAttribute('data-amount');
+    document.getElementById('voteTallyMsg').textContent = 'You voted $' + selectedVote + ', this will be saved with your response below.';
+  }
+
+  var flexRadios = document.querySelectorAll('input[name="flex"]');
+  var flexibleWrap = document.getElementById('flexibleFieldWrap');
+  var firmWrap = document.getElementById('firmFieldWrap');
+
+  function updateFlexFields() {
+    var val = document.querySelector('input[name="flex"]:checked').value;
+    if (val === 'Firm') {
+      flexibleWrap.style.display = 'none';
+      firmWrap.style.display = 'block';
+    } else {
+      flexibleWrap.style.display = 'block';
+      firmWrap.style.display = 'none';
+    }
+  }
+  flexRadios.forEach(function(r) { r.addEventListener('change', updateFlexFields); });
+  updateFlexFields();
+
+  var responses = [];
+  var kidResponses = [];
+
+  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzpJZMMkrrGT_YR2yM5nA88KS1SAywK-187LkTR7CVV4J1XrS-JteUX-Gjy0DLc6F1T3g/exec';
+
+  function sheetConfigured() {
+    return SHEET_API_URL && SHEET_API_URL.indexOf('https://script.google.com') === 0;
+  }
+
+  function syncAdultToSheet(data) {
+    if (!sheetConfigured()) { return; }
+    var payload = Object.assign({ type: 'adult' }, data);
+    fetch(SHEET_API_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).catch(function(err) { console.warn('Sync to sheet failed:', err); });
+  }
+
+  function syncKidToSheet(kid) {
+    if (!sheetConfigured()) { return; }
+    var payload = Object.assign({ type: 'kid' }, kid);
+    fetch(SHEET_API_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).catch(function(err) { console.warn('Sync kid to sheet failed:', err); });
+  }
+
+  function loadFromSheet() {
+    if (!sheetConfigured()) {
+      alert('The organizer has not connected a Google Sheet yet, showing local answers only.');
+      return;
+    }
+    var refreshBtn = document.getElementById('refreshFromSheetBtn');
+    if (refreshBtn) { refreshBtn.innerHTML = '&#8987; Refreshing...'; }
+
+    Promise.all([
+      fetch(SHEET_API_URL).then(function(r) { return r.json(); }),
+      fetch(SHEET_API_URL + '?action=getKids').then(function(r) { return r.json(); })
+    ]).then(function(results) {
+      var adultResult = results[0];
+      var kidResult = results[1];
+      if (adultResult && adultResult.responses) { responses = adultResult.responses; }
+      if (kidResult && kidResult.kids) { kidResponses = kidResult.kids; }
+      renderResponses();
+      renderParty();
+      renderQuickTally();
+      renderKidResponses();
+      if (refreshBtn) { refreshBtn.innerHTML = '&#128260; Refresh from Sheet'; }
+    }).catch(function(err) {
+      console.warn('Load from sheet failed:', err);
+      alert('Could not reach the Google Sheet. Check your internet connection and try again.');
+      if (refreshBtn) { refreshBtn.innerHTML = '&#128260; Refresh from Sheet'; }
+    });
+  }
+
+  var kidEntryCount = 0;
+
+  function addKidEntry() {
+    kidEntryCount++;
+    var id = kidEntryCount;
+    var container = document.getElementById('kidEntries');
+    var div = document.createElement('div');
+    div.className = 'kid-entry';
+    div.setAttribute('data-kid-id', id);
+    div.innerHTML =
+      '<button type="button" class="kid-entry-remove" onclick="removeKidEntry(' + id + ')">&#10005; remove</button>' +
+      '<div class="field"><label>&#128118; Kid&rsquo;s Name</label><input type="text" class="kid-name" placeholder="e.g. Little Mateo"></div>' +
+      '<div class="field"><label>&#128151; Likes / Interests</label><textarea class="kid-likes" placeholder="e.g. dinosaurs, Legos, drawing..."></textarea></div>' +
+      '<div class="field"><label>&#128683; Dislikes / Please DON&rsquo;T buy</label><textarea class="kid-dislikes" placeholder="e.g. no loud toys, allergic to latex..."></textarea></div>' +
+      '<div class="field"><label>&#128085; Sizes</label><input type="text" class="kid-sizes" placeholder="e.g. clothes 5T, shoes 10"></div>';
+    container.appendChild(div);
+  }
+
+  function removeKidEntry(id) {
+    var container = document.getElementById('kidEntries');
+    var entry = container.querySelector('[data-kid-id="' + id + '"]');
+    if (entry) { container.removeChild(entry); }
+  }
+
+  function collectKidEntries(parentName) {
+    var entries = [];
+    document.querySelectorAll('#kidEntries .kid-entry').forEach(function(div) {
+      var kidName = div.querySelector('.kid-name').value.trim();
+      if (!kidName) { return; }
+      entries.push({
+        kidName: kidName,
+        isKidEntry: true,
+        submittedByParent: parentName,
+        likes: div.querySelector('.kid-likes').value.trim(),
+        dislikes: div.querySelector('.kid-dislikes').value.trim(),
+        sizes: div.querySelector('.kid-sizes').value.trim(),
+        submittedAt: new Date().toLocaleString()
+      });
+    });
+    return entries;
+  }
+
+  function optOut() {
+    var name = document.getElementById('name').value.trim();
+    if (!name) {
+      alert('Please enter your name first so we know who is opting out!');
+      document.getElementById('name').focus();
+      return;
+    }
+    var email = document.getElementById('email').value.trim();
+    var data = {
+      name: name,
+      email: email,
+      optedOut: true,
+      optOutMessage: 'Thanks, but no thanks - love you!',
+      submittedAt: new Date().toLocaleString()
+    };
+
+    var kidEntries = collectKidEntries(name);
+    kidResponses = kidResponses.concat(kidEntries);
+
+    responses.push(data);
+    syncAdultToSheet(data);
+    kidEntries.forEach(function(kid) { syncKidToSheet(kid); });
+    renderResponses();
+    renderParty();
+    renderQuickTally();
+    renderKidResponses();
+
+    var kidNote = kidEntries.length > 0 ? (' Plus ' + kidEntries.length + ' kid ' + (kidEntries.length === 1 ? 'entry' : 'entries') + '!') : '';
+    var banner = document.getElementById('optOutBanner');
+    banner.innerHTML = '&#128156; <b>Got it, ' + name.split(' ')[0] + '!</b> You are all set &mdash; no gift exchange needed for you this year. Sending love your way!' + kidNote + ' It now shows up on the results page.';
+    banner.classList.add('show');
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    setTimeout(function() {
+      showTab('results');
+    }, 1200);
+  }
+
+  document.getElementById('pollForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    if (!name) { alert('Please enter your name! / Escribe tu nombre!'); return; }
+    if (!selectedVote) {
+      alert('Do not forget to cast your group vote for $50 or $75 at the top!');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    var flexType = document.querySelector('input[name="flex"]:checked').value;
+    var secretChoice = document.querySelector('input[name="secretmode"]:checked').value;
+    var data = {
+      name: name,
+      email: document.getElementById('email').value.trim(),
+      groupVote: selectedVote,
+      amountType: flexType,
+      suggestedLimit: flexType === 'Flexible' ? (document.getElementById('suggestedLimit').value || null) : null,
+      firmMin: flexType === 'Firm' ? (document.getElementById('firmMin').value || null) : null,
+      firmMax: flexType === 'Firm' ? (document.getElementById('firmMax').value || null) : null,
+      santaReveal: secretChoice,
+      wantsIdeas: document.querySelector('input[name="ideas"]:checked').value,
+      wantsMeeting: document.querySelector('input[name="meeting"]:checked').value,
+      openToVariety: document.querySelector('input[name="variety"]:checked').value,
+      notes: document.getElementById('notes').value.trim(),
+      noBuy: document.getElementById('noBuy').value.trim(),
+      submittedAt: new Date().toLocaleString()
+    };
+
+    var safeName = name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
+    var kidEntries = collectKidEntries(name);
+    kidResponses = kidResponses.concat(kidEntries);
+
+    responses.push(data);
+    syncAdultToSheet(data);
+    kidEntries.forEach(function(kid) { syncKidToSheet(kid); });
+    renderResponses();
+    renderParty();
+    renderQuickTally();
+    renderKidResponses();
+
+    var submitBtn = document.getElementById('submitBtn');
+    var originalBtnText = submitBtn.innerHTML;
+    var originalBtnBg = submitBtn.style.background;
+    submitBtn.innerHTML = '&#127881; Thank You! &#127881;';
+    submitBtn.style.background = 'linear-gradient(135deg, var(--teal), var(--green))';
+    clearTimeout(window._submitBtnTimeout);
+    window._submitBtnTimeout = setTimeout(function() {
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.style.background = originalBtnBg;
+    }, 8000);
+
+    var banner = document.getElementById('saveConfirmBanner');
+    var kidNote = kidEntries.length > 0 ? (' Plus ' + kidEntries.length + ' kid ' + (kidEntries.length === 1 ? 'entry' : 'entries') + '!') : '';
+    banner.innerHTML = '&#9989; <b>Submitted!</b> Your answers now show up on the results page.' + kidNote;
+    banner.style.display = 'block';
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    clearTimeout(window._saveBannerTimeout);
+    window._saveBannerTimeout = setTimeout(function() {
+      banner.style.display = 'none';
+    }, 8000);
+
+    setTimeout(function() {
+      showTab('results');
+      var resultsViewEl = document.getElementById('resultsView');
+      if (resultsViewEl) { resultsViewEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }, 1200);
+  });
+
+  renderFaqs();
+
+  function removeResponse(i) {
+    responses.splice(i, 1);
+    renderResponses();
+    renderParty();
+    renderQuickTally();
+    renderKidResponses();
+  }
+
+  function clearForm() {
+    document.getElementById('pollForm').reset();
+    selectedVote = null;
+    var allBtns = document.querySelectorAll('.vote-btn');
+    for (var i = 0; i < allBtns.length; i++) { allBtns[i].classList.remove('selected'); }
+    document.getElementById('voteTallyMsg').textContent = 'Your vote will be included when you save your response below.';
+    document.getElementById('kidEntries').innerHTML = '';
+    kidEntryCount = 0;
+    updateFlexFields();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function amountLabel(r) {
+    if (r.amountType === 'Firm') {
+      var min = r.firmMin || '?';
+      var max = r.firmMax || '?';
+      return 'Firm: $' + min + ' to $' + max;
+    } else {
+      return 'Flexible' + (r.suggestedLimit ? (' (~$' + r.suggestedLimit + ' suggested)') : '');
+    }
+  }
+
+  function renderResponses() {
+    var container = document.getElementById('responsesContainer');
+    var voteSummaryEl = document.getElementById('voteSummary');
+    if (responses.length === 0) {
+      container.innerHTML = '<div class="empty-state">No responses loaded yet.</div>';
+      voteSummaryEl.innerHTML = '';
+      var quickTallyElEmpty = document.getElementById('quickTally');
+      if (quickTallyElEmpty) { quickTallyElEmpty.innerHTML = ''; }
+      return;
+    }
+
+    var count50 = responses.filter(function(r) { return String(r.groupVote) === '50'; }).length;
+    var count75 = responses.filter(function(r) { return String(r.groupVote) === '75'; }).length;
+    var totalVotes = count50 + count75;
+    var pct50 = totalVotes ? Math.round((count50 / totalVotes) * 100) : 0;
+    var pct75 = totalVotes ? Math.round((count75 / totalVotes) * 100) : 0;
+    var winner = count50 === count75 ? 'Tie!' : (count50 > count75 ? '$50 wins!' : '$75 wins!');
+
+    voteSummaryEl.innerHTML =
+      '<div class="vote-card" style="margin-bottom:20px;">' +
+        '<h2>Group Vote Results</h2>' +
+        '<div class="vote-hint">' + totalVotes + ' vote' + (totalVotes === 1 ? '' : 's') + ' counted, ' + winner + '</div>' +
+        '<div class="vote-bar-wrap">' +
+          '<div class="vote-bar-row">' +
+            '<span style="width:50px;">$50</span>' +
+            '<div class="vote-bar-track"><div class="vote-bar-fill" style="width:' + pct50 + '%; background: linear-gradient(135deg, var(--teal), var(--green));"></div></div>' +
+            '<span style="width:70px; text-align:right;">' + count50 + ' (' + pct50 + '%)</span>' +
+          '</div>' +
+          '<div class="vote-bar-row">' +
+            '<span style="width:50px;">$75</span>' +
+            '<div class="vote-bar-track"><div class="vote-bar-fill" style="width:' + pct75 + '%; background: linear-gradient(135deg, var(--pink), var(--orange));"></div></div>' +
+            '<span style="width:70px; text-align:right;">' + count75 + ' (' + pct75 + '%)</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    container.innerHTML = responses.map(function(r) {
+      var idx = responses.indexOf(r);
+      return buildBlurbCard(r, idx);
+    }).join('');
+    renderQuickTally();
+  }
+
+  function buildBlurbCard(r, idx) {
+    var firstName = (r.name || 'Someone').split(' ')[0];
+    var removeBtn = '<button class="faq-del" onclick="removeResponse(' + idx + ')" title="Remove this response">&#10005; remove</button>';
+
+    if (r.optedOut) {
+      return '<div class="resp-card blurb-card">' + removeBtn +
+        '<div class="name">&#128156; ' + escapeHtml(r.name || 'Unknown') + '</div>' +
+        '<p class="blurb-text">' + escapeHtml(firstName) + ' is sitting out the gift exchange this year &mdash; thanks, but no thanks, love you!</p>' +
+      '</div>';
+    }
+
+    var voteText = r.groupVote ? ('voted <b>$' + escapeHtml(r.groupVote) + '</b> for the spending limit') : 'did not vote on the spending limit';
+    var amountText = amountLabel(r);
+    var santaText = (r.santaReveal || '').toLowerCase().indexOf('secret') === 0 || (r.santaReveal || '').toLowerCase().indexOf('yes') === 0
+      ? 'wants to keep Secret Santa a surprise'
+      : 'wants to know who their Santa is';
+    var ideasText = (r.wantsIdeas || '').toLowerCase().indexOf('yes') === 0 ? 'is happy to share gift ideas' : 'wants to be surprised, no hints needed';
+    var meetingText = (r.wantsMeeting || '').toLowerCase().indexOf('yes') === 0 ? 'would love a quick chat with their gift recipient' : 'does not need a meeting, just wing it';
+    var varietyText = (r.openToVariety || '').toLowerCase().indexOf('yes') === 0 ? 'is totally open to a fun gift basket or variety of smaller things' : 'would rather get one solid gift';
+
+    var blurb = escapeHtml(firstName) + ' ' + voteText + ' (' + escapeHtml(amountText) + '), ' + santaText + ', ' + ideasText + ', ' + meetingText + ', and ' + varietyText + '.';
+
+    var extras = '';
+    if (r.notes) { extras += '<p class="blurb-extra">&#128221; <b>Notes:</b> ' + escapeHtml(r.notes) + '</p>'; }
+    if (r.noBuy) { extras += '<p class="blurb-extra">&#128683; <b>Please do not buy:</b> ' + escapeHtml(r.noBuy) + '</p>'; }
+    if (r.email) { extras += '<p class="blurb-extra">&#128231; <a href="mailto:' + escapeHtml(r.email) + '" style="color:var(--teal);">' + escapeHtml(r.email) + '</a></p>'; }
+
+    return '<div class="resp-card blurb-card">' + removeBtn +
+      '<div class="name">&#127881; ' + escapeHtml(r.name || 'Unknown') + '</div>' +
+      '<p class="blurb-text">' + blurb + '</p>' +
+      extras +
+    '</div>';
+  }
+
+  function buildKidBlurbCard(kid, idx) {
+    var removeBtn = '<button class="faq-del" onclick="removeKidResponse(' + idx + ')" title="Remove this entry">&#10005; remove</button>';
+    var parts = [];
+    if (kid.likes) { parts.push('likes ' + escapeHtml(kid.likes)); }
+    if (kid.dislikes) { parts.push('should avoid ' + escapeHtml(kid.dislikes)); }
+    if (kid.sizes) { parts.push('wears size(s) ' + escapeHtml(kid.sizes)); }
+    var blurb = parts.length > 0 ? (parts.join('; ') + '.') : 'No extra details added yet.';
+    var parentNote = kid.submittedByParent ? ('<p class="blurb-extra">&#128100; Submitted by ' + escapeHtml(kid.submittedByParent) + '</p>') : '';
+
+    return '<div class="resp-card blurb-card">' + removeBtn +
+      '<div class="name">&#128118; ' + escapeHtml(kid.kidName || 'Unknown') + '</div>' +
+      '<p class="blurb-text">' + blurb + '</p>' +
+      parentNote +
+    '</div>';
+  }
+
+  function removeKidResponse(i) {
+    kidResponses.splice(i, 1);
+    renderKidResponses();
+  }
+
+  function renderKidResponses() {
+    var el = document.getElementById('kidResponsesContainer');
+    if (!el) return;
+    if (kidResponses.length === 0) {
+      el.innerHTML = '<div class="empty-state">No kid entries yet.</div>';
+      return;
+    }
+    el.innerHTML = kidResponses.map(function(k, i) { return buildKidBlurbCard(k, i); }).join('');
+  }
+
+  function renderQuickTally() {
+    var el = document.getElementById('quickTally');
+    if (!el) return;
+    if (responses.length === 0) {
+      el.innerHTML = '';
+      return;
+    }
+
+    function tally(field) {
+      var counts = {};
+      responses.forEach(function(r) {
+        var key = (r && r[field]) ? String(r[field]) : 'No answer';
+        counts[key] = (counts[key] || 0) + 1;
+      });
+      return counts;
+    }
+
+    function tallyRowsHtml(counts) {
+      var keys = Object.keys(counts);
+      var total = keys.reduce(function(sum, k) { return sum + counts[k]; }, 0);
+      return keys.map(function(k) {
+        var pct = total ? Math.round((counts[k] / total) * 100) : 0;
+        return '<div class="tally-row">' +
+          '<span class="tally-label">' + escapeHtml(k) + '</span>' +
+          '<div class="tally-bar-track"><div class="tally-bar-fill" style="width:' + pct + '%;"></div></div>' +
+          '<span class="tally-count">' + counts[k] + '</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    var santaCounts = tally('santaReveal');
+    var ideasCounts = tally('wantsIdeas');
+    var meetingCounts = tally('wantsMeeting');
+    var varietyCounts = tally('openToVariety');
+    var optOutCount = responses.filter(function(r) { return r && r.optedOut; }).length;
+
+    var html = '<div class="card">';
+    html += '<div class="section-title santa">&#127881; Quick Tally &mdash; Fun Snapshot</div>';
+    html += '<div class="tally-group"><div class="tally-group-title">&#127877; Secret Santa?</div>' + tallyRowsHtml(santaCounts) + '</div>';
+    html += '<div class="tally-group"><div class="tally-group-title">&#128161; Gift Ideas?</div>' + tallyRowsHtml(ideasCounts) + '</div>';
+    html += '<div class="tally-group"><div class="tally-group-title">&#128222; Meeting?</div>' + tallyRowsHtml(meetingCounts) + '</div>';
+    html += '<div class="tally-group"><div class="tally-group-title">&#129530; Variety / Basket?</div>' + tallyRowsHtml(varietyCounts) + '</div>';
+    if (optOutCount > 0) {
+      html += '<div class="tally-group"><div class="tally-group-title">&#128156; Sitting This One Out</div>';
+      html += '<div class="tally-row"><span class="tally-label">Thanks, but no thanks &mdash; love you!</span><div class="tally-bar-track"><div class="tally-bar-fill" style="width:100%;"></div></div><span class="tally-count">' + optOutCount + '</span></div>';
+      html += '</div>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+
+  var femaleNames = ['maria','carmen','ana','laura','sofia','sofía','isabel','lucia','lucía','elena','rosa','guadalupe','adriana','patricia','claudia','daniela','veronica','verónica','gabriela','alejandra','monica','mónica','carla','carolina','victoria','valentina','ximena','fernanda','paola','karla','andrea','yolanda','teresa','juana','martha','marta','susana','silvia','leticia','beatriz','diana','erika','érika','julia','natalia','camila','renata','jimena','perla','dulce','itzel','maya','emily','emma','olivia','ava','sophia','isabella','mia','amelia','charlotte','harper','evelyn','abigail','ella','scarlett','grace','chloe','victoria','riley','aria','lily','hannah','natalie','samantha','madison','jessica','sarah','sara','jennifer','amanda','melissa','nicole','stephanie','rebecca','michelle','kimberly','lisa','angela','heather','tiffany','amy','carol','carolyn','janet','catherine','christine','frances','ruth','diane','julie','joyce','virginia','kathleen','pamela','martha','debra','rachel','margaret','lauren','alexis','kayla','megan','brittany','vanessa','priscilla','jasmine','gloria','esperanza','consuelo','dolores','mercedes','pilar','rocio','rocío','yesenia','ines','inés','blanca','alma','norma','graciela','olga','elvia','elvira','marisol','marisela','brenda','cynthia','jacqueline','rosario'];
+  var maleNames = ['jose','josé','juan','carlos','luis','miguel','francisco','javier','antonio','manuel','jesus','jesús','alejandro','ricardo','jorge','fernando','roberto','eduardo','rafael','sergio','pedro','daniel','david','diego','pablo','raul','raúl','victor','víctor','oscar','óscar','arturo','armando','mario','ruben','rubén','ignacio','enrique','hector','héctor','alberto','gerardo','gustavo','salvador','marco','marcos','emilio','guillermo','felipe','ramon','ramón','esteban','adrian','adrián','angel','ángel','ivan','iván','jaime','leonardo','martin','martín','omar','rodrigo','santiago','tomas','tomás','vicente','agustin','agustín','alfonso','alfredo','andres','andrés','cesar','césar','erick','federico','fidel','gabriel','gilberto','humberto','isaac','israel','jonathan','julian','julián','lorenzo','mauricio','moises','moisés','nicolas','nicolás','noe','noé','orlando','rene','rené','samuel','saul','saúl','sebastian','sebastián','simon','simón','james','john','robert','michael','william','richard','joseph','thomas','christopher','charles','matthew','anthony','donald','mark','paul','steven','andrew','kenneth','joshua','kevin','brian','george','edward','ronald','timothy','jason','jeffrey','ryan','jacob','gary','nicholas','eric','stephen','jonathan','larry','justin','scott','brandon','benjamin','samuel','gregory','frank','alexander','raymond','patrick','jack','dennis','jerry','tyler','aaron','henry','douglas','peter','adam','nathan','zachary','kyle','walter','harold','jeremy','ethan','carl','keith','roger','terry','austin','sean','gerald','christian','noah','liam','mason'];
+
+  function guessGenderFromName(fullName) {
+    if (!fullName) return 'n';
+    var cleaned = fullName.trim().toLowerCase();
+    var parts = cleaned.split(/\s+/);
+    var first = parts[0] || '';
+    var stripped = first.normalize ? first.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : first;
+    if (femaleNames.indexOf(first) !== -1 || femaleNames.indexOf(stripped) !== -1) return 'f';
+    if (maleNames.indexOf(first) !== -1 || maleNames.indexOf(stripped) !== -1) return 'm';
+    if (/a$/.test(stripped) && stripped.length > 2) return 'f';
+    if (/o$/.test(stripped) && stripped.length > 2) return 'm';
+    return 'n';
+  }
+
+  var femaleEmojis = ['&#128105;', '&#128105;&#8205;&#128095;', '&#129488;&#8205;&#9792;&#65039;', '&#127875;', '&#128121;'];
+  var maleEmojis = ['&#128104;', '&#128104;&#8205;&#128095;', '&#129488;&#8205;&#9794;&#65039;', '&#127872;', '&#128120;'];
+  var neutralEmojis = ['&#129496;', '&#11088;', '&#127877;', '&#9731;&#65039;', '&#127807;'];
+
+  function pickEmoji(list, seedStr) {
+    var seed = 0;
+    for (var i = 0; i < seedStr.length; i++) { seed += seedStr.charCodeAt(i); }
+    return list[seed % list.length];
+  }
+
+  function renderParty() {
+    var grid50 = document.getElementById('partyGrid50');
+    var grid75 = document.getElementById('partyGrid75');
+    var count50El = document.getElementById('partyCount50');
+    var count75El = document.getElementById('partyCount75');
+
+    var team50 = responses.filter(function(r) { return String(r.groupVote) === '50'; });
+    var team75 = responses.filter(function(r) { return String(r.groupVote) === '75'; });
+
+    count50El.textContent = team50.length + (team50.length === 1 ? ' vote' : ' votes');
+    count75El.textContent = team75.length + (team75.length === 1 ? ' vote' : ' votes');
+
+    function buildCards(team) {
+      if (team.length === 0) {
+        return '<div class="empty-state" style="padding:10px; font-size:13px;">No votes here yet.</div>';
+      }
+      return team.map(function(r) {
+        var name = r.name || 'Unknown';
+        var gender = guessGenderFromName(name);
+        var avatarClass = gender === 'f' ? 'avatar-f' : (gender === 'm' ? 'avatar-m' : 'avatar-n');
+        var emojiList = gender === 'f' ? femaleEmojis : (gender === 'm' ? maleEmojis : neutralEmojis);
+        var emoji = pickEmoji(emojiList, name);
+        return '<div class="party-person">' +
+          '<div class="party-avatar ' + avatarClass + '">' + emoji + '</div>' +
+          '<div class="pname">' + escapeHtml(name) + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    grid50.innerHTML = buildCards(team50);
+    grid75.innerHTML = buildCards(team75);
+  }
+
+  
+
+  function exportAllCSV() {
+    if (responses.length === 0) { alert('No responses yet.'); return; }
+    var headers = ['name','email','groupVote','amountType','suggestedLimit','firmMin','firmMax','santaReveal','wantsIdeas','wantsMeeting','openToVariety','notes','noBuy','submittedAt'];
+    var rows = [headers.join(',')];
+    responses.forEach(function(r) {
+      var row = headers.map(function(h) {
+        var val = r[h] == null ? '' : String(r[h]);
+        val = val.replace(/"/g, '""');
+        return '"' + val + '"';
+      });
+      rows.push(row.join(','));
+    });
+    var csv = rows.join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'christmas_gift_poll_all_responses.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function exportKidsCSV() {
+    if (kidResponses.length === 0) { alert('No kid entries yet.'); return; }
+    var headers = ['kidName', 'submittedByParent', 'likes', 'dislikes', 'sizes', 'submittedAt'];
+    var rows = [headers.join(',')];
+    kidResponses.forEach(function(k) {
+      var row = headers.map(function(h) {
+        var val = k[h] == null ? '' : String(k[h]);
+        val = val.replace(/"/g, '""');
+        return '"' + val + '"';
+      });
+      rows.push(row.join(','));
+    });
+    var csv = rows.join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'christmas_gift_poll_kids.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+
+</body></html>
