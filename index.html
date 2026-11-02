@@ -974,7 +974,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   var responses = [];
   var kidResponses = [];
 
-  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzpJZMMkrrGT_YR2yM5nA88KS1SAywK-187LkTR7CVV4J1XrS-JteUX-Gjy0DLc6F1T3g/exec';
+  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzj0zLhSvK7q6fJBV97aT37m29pONnCCM9UKCwIkyaOq-KJOSc5TYckpvyFhOSNebaHEg/exec';
 
   function sheetConfigured() {
     return SHEET_API_URL && SHEET_API_URL.indexOf('https://script.google.com') === 0;
@@ -1002,6 +1002,24 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     }).catch(function(err) { console.warn('Sync kid to sheet failed:', err); });
   }
 
+  function newId() {
+    return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+  }
+
+  var deletedIds = {};
+
+  function deleteFromSheet(target, id) {
+    if (!sheetConfigured()) { return; }
+    deletedIds[id] = true;
+    fetch(SHEET_API_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ type: 'delete', target: target, id: id })
+    }).catch(function(err) { console.warn('Delete sync failed:', err); });
+    setTimeout(loadFromSheet, 2500);
+  }
+
   function loadFromSheet() {
     if (!sheetConfigured()) {
       alert('The organizer has not connected a Google Sheet yet, showing local answers only.');
@@ -1016,8 +1034,8 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     ]).then(function(results) {
       var adultResult = results[0];
       var kidResult = results[1];
-      if (adultResult && adultResult.responses) { responses = adultResult.responses; }
-      if (kidResult && kidResult.kids) { kidResponses = kidResult.kids; }
+      if (adultResult && adultResult.responses) { responses = adultResult.responses.filter(function(r) { return !deletedIds[r.id]; }); }
+      if (kidResult && kidResult.kids) { kidResponses = kidResult.kids.filter(function(k) { return !deletedIds[k.id]; }); }
       renderResponses();
       renderParty();
       renderQuickTally();
@@ -1060,6 +1078,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
       var kidName = div.querySelector('.kid-name').value.trim();
       if (!kidName) { return; }
       entries.push({
+        id: newId(),
         kidName: kidName,
         isKidEntry: true,
         submittedByParent: parentName,
@@ -1081,6 +1100,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     }
     var email = document.getElementById('email').value.trim();
     var data = {
+      id: newId(),
       name: name,
       email: email,
       optedOut: true,
@@ -1124,6 +1144,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     var flexType = document.querySelector('input[name="flex"]:checked').value;
     var secretChoice = document.querySelector('input[name="secretmode"]:checked').value;
     var data = {
+      id: newId(),
       name: name,
       email: document.getElementById('email').value.trim(),
       groupVote: selectedVote,
@@ -1183,8 +1204,10 @@ a { color: var(--color-link, var(--color-primary)); }</style>
 
   renderFaqs();
 
-  function removeResponse(i) {
-    responses.splice(i, 1);
+  function removeResponse(id) {
+    if (!confirm('Remove this response for everyone?')) { return; }
+    responses = responses.filter(function(r) { return r.id !== id; });
+    deleteFromSheet('adult', id);
     renderResponses();
     renderParty();
     renderQuickTally();
@@ -1258,7 +1281,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
 
   function buildBlurbCard(r, idx) {
     var firstName = (r.name || 'Someone').split(' ')[0];
-    var removeBtn = '<button class="faq-del" onclick="removeResponse(' + idx + ')" title="Remove this response">&#10005; remove</button>';
+    var removeBtn = '<button class="faq-del" onclick="removeResponse(\'' + r.id + '\')" title="Remove this response">&#10005; remove</button>';
 
     if (r.optedOut) {
       return '<div class="resp-card blurb-card">' + removeBtn +
@@ -1291,7 +1314,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   }
 
   function buildKidBlurbCard(kid, idx) {
-    var removeBtn = '<button class="faq-del" onclick="removeKidResponse(' + idx + ')" title="Remove this entry">&#10005; remove</button>';
+    var removeBtn = '<button class="faq-del" onclick="removeKidResponse(\'' + kid.id + '\')" title="Remove this entry">&#10005; remove</button>';
     var parts = [];
     if (kid.likes) { parts.push('likes ' + escapeHtml(kid.likes)); }
     if (kid.dislikes) { parts.push('should avoid ' + escapeHtml(kid.dislikes)); }
@@ -1306,8 +1329,10 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     '</div>';
   }
 
-  function removeKidResponse(i) {
-    kidResponses.splice(i, 1);
+  function removeKidResponse(id) {
+    if (!confirm('Remove this kid entry for everyone?')) { return; }
+    kidResponses = kidResponses.filter(function(k) { return k.id !== id; });
+    deleteFromSheet('kid', id);
     renderKidResponses();
   }
 
