@@ -686,7 +686,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
           </div>
         </div>
         <div class="opt-out-row">
-          <span class="opt-out-text">Not feeling up for the exchange this year? No pressure at all.</span>
+          <span class="opt-out-text">Not feeling up for the exchange this year? No pressure at all. You can still vote on the spending limit: pick $50 or $75 below first, then come back and click this button.</span>
           <button type="button" class="opt-out-btn" onclick="optOut()">💜 Thanks, but no thanks — love you!</button>
         </div>
         <div id="optOutBanner"></div>
@@ -1012,7 +1012,12 @@ a { color: var(--color-link, var(--color-primary)); }</style>
 
     Promise.all([
       fetch(SHEET_API_URL + '?t=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); }),
-fetch(SHEET_API_URL + '?action=getKids&t=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); })
+      fetch(SHEET_API_URL + '?action=getKids&t=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); })
+    ]).then(function(results) {
+      var adultResult = results[0];
+      var kidResult = results[1];
+      if (adultResult && adultResult.responses) { responses = adultResult.responses; }
+      if (kidResult && kidResult.kids) { kidResponses = kidResult.kids; }
       renderResponses();
       renderParty();
       renderQuickTally();
@@ -1079,6 +1084,7 @@ fetch(SHEET_API_URL + '?action=getKids&t=' + Date.now(), { cache: 'no-store' }).
       name: name,
       email: email,
       optedOut: true,
+      groupVote: selectedVote || '',
       optOutMessage: 'Thanks, but no thanks - love you!',
       submittedAt: new Date().toLocaleString()
     };
