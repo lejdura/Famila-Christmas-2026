@@ -1011,13 +1011,8 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     if (refreshBtn) { refreshBtn.innerHTML = '&#8987; Refreshing...'; }
 
     Promise.all([
-      fetch(SHEET_API_URL).then(function(r) { return r.json(); }),
-      fetch(SHEET_API_URL + '?action=getKids').then(function(r) { return r.json(); })
-    ]).then(function(results) {
-      var adultResult = results[0];
-      var kidResult = results[1];
-      if (adultResult && adultResult.responses) { responses = adultResult.responses; }
-      if (kidResult && kidResult.kids) { kidResponses = kidResult.kids; }
+      fetch(SHEET_API_URL + '?t=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); }),
+fetch(SHEET_API_URL + '?action=getKids&t=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); })
       renderResponses();
       renderParty();
       renderQuickTally();
