@@ -701,7 +701,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     </div>
     <div class="card">
       <div class="section-title santa">📋 Everyone's Wish Lists</div>
-      <div id="wishList"><div class="empty-state">Loading...</div></div>
+      <div id="wishList"><div class="empty-state">Loading... (the first load can take a few seconds)</div></div>
     </div>
   </div>
 
@@ -902,8 +902,15 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     });
   }
 
+  var FETCH_TIMEOUT_MS = 25000;
+
   function fetchJson(url) {
-    return fetch(url).then(function(r) { return r.json(); });
+    return Promise.race([
+      fetch(url).then(function(r) { return r.json(); }),
+      new Promise(function(resolve, reject) {
+        setTimeout(function() { reject(new Error('timeout')); }, FETCH_TIMEOUT_MS);
+      })
+    ]);
   }
 
   function toCards(res) {
@@ -924,19 +931,40 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   }
 
   function loadWishes() {
+    var el = document.getElementById('wishList');
     if (!sheetConfigured()) { renderWishes(); return; }
-    var empty = {};
-    Promise.all([
-      fetchJson(SHEET_API_URL + '?action=getWishes').catch(function() { return empty; }),
-      fetchJson(SHEET_API_URL).catch(function() { return empty; }),
-      fetchJson(SHEET_API_URL + '?action=getKids').catch(function() { return empty; })
-    ]).then(function(all) {
-      if (all[0] === empty && all[1] === empty && all[2] === empty) {
-        document.getElementById('wishList').innerHTML = '<div class="empty-state">Could not load wish lists right now. Try again in a minute.</div>';
+    var parts = { wishes: null, responses: null, kids: null };
+    var urls = {
+      wishes: SHEET_API_URL + '?action=getWishes',
+      responses: SHEET_API_URL,
+      kids: SHEET_API_URL + '?action=getKids'
+    };
+    var pending = 3;
+    var errors = 0;
+
+    function refresh() {
+      wishes = toCards(parts);
+      if (!wishes.length && pending > 0) { return; }   // keep "Loading..." until something arrives
+      if (!wishes.length && errors > 0) {
+        el.innerHTML = '<div class="empty-state">Could not load wish lists right now. <a href="#" onclick="loadWishes(); return false;">Try again</a></div>';
         return;
       }
-      wishes = toCards({ wishes: all[0].wishes, responses: all[1].responses, kids: all[2].kids });
       renderWishes();
+      if (pending === 0 && errors > 0) {
+        el.insertAdjacentHTML('beforeend', '<div class="empty-state">Some lists could not load. <a href="#" onclick="loadWishes(); return false;">Try again</a></div>');
+      }
+    }
+
+    Object.keys(urls).forEach(function(key) {
+      fetchJson(urls[key]).then(function(res) {
+        parts[key] = (res && res[key]) || [];
+      }).catch(function(err) {
+        errors++;
+        console.warn('Load ' + key + ' failed:', err);
+      }).then(function() {
+        pending--;
+        try { refresh(); } catch (e) { console.warn('Render failed:', e); }
+      });
     });
   }
 
