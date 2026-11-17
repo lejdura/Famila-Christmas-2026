@@ -529,6 +529,16 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     flex: 1; padding: 12px 8px; border: none; border-radius: 10px; background: transparent;
     font-family: var(--font-display); font-weight: 700; font-size: 16px; cursor: pointer; color: var(--color-text-secondary); transition: all 0.15s ease;
   }
+  .tab-bar { flex-wrap: wrap; }
+  .tab-btn { min-width: 120px; }
+  .wish-card { background:#fff; border:2.5px solid var(--color-border); border-radius: var(--radius-sm); padding:14px 16px; margin-bottom:12px; }
+  .wish-card .who { font-family: var(--font-display); font-weight:800; font-size:18px; color: var(--pink); }
+  .wish-card .lbl { font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:.5px; margin-top:8px; }
+  .wish-card .want { color:#1b7f3b; } .wish-card .dont { color:#b3261e; }
+  .wish-card .by { font-size:13px; color: var(--color-text-muted); margin-top:8px; }
+  .wish-card .faq-del { float:right; background:none; border:none; color: var(--color-text-muted); cursor:pointer; font-size:14px; font-weight:700; }
+  .wish-form input, .wish-form textarea { margin-bottom:10px; }
+  .wish-msg { margin-top:12px; font-weight:700; }
   .tab-btn.active { background: linear-gradient(135deg, var(--pink), var(--orange)); color: #fff; box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
 
   .faq-item {
@@ -660,211 +670,77 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   <div class="header">
     <h1>¡Intercambio Navideño!</h1>
     <div class="sub">Family Christmas Gift Exchange 🎁</div>
-    <p>Fill this out so we can plan the exchange — one entry per person, ¡con mucho gusto!</p>
+    <p>Post your Christmas ideas and wish lists, or ask the coordinator a question, ¡con mucho gusto!</p>
   </div>
 
   <div class="banner">
-    🎉 <b>Hey familia!</b> Everyone fills this out on their own phone or computer, let's have some fun with it! Polls are open until <b>11/10/26</b>, so take your time and enjoy the process. 🎅
+    💰 <b>Spending limit: $75 per gift.</b><br>🎉 <b>Hey familia!</b> This is our space for Christmas ideas. Add what you (or your kids) would love and what to skip, and check your person's list before you shop. 🎅
   </div>
 
   <div class="tab-bar">
-    <button type="button" class="tab-btn active" id="tabBtnForm" onclick="showTab('form')">📝 Form</button>
+    <button type="button" class="tab-btn active" id="tabBtnWish" onclick="showTab('wish')">🎁 Ideas &amp; Wish Lists</button>
+    <button type="button" class="tab-btn" id="tabBtnQa" onclick="showTab('qa')">🙋 Ask Someone</button>
+    <button type="button" class="tab-btn" id="tabBtnAsk" onclick="showTab('ask')">💌 Ask Coordinator</button>
     <button type="button" class="tab-btn" id="tabBtnFaq" onclick="showTab('faq')">❓ FAQ</button>
   </div>
 
-  <div id="formView">
-    <form id="pollForm">
-      <div class="card">
-        <div class="name-email-row">
-          <div class="field">
-            <label for="name">🙋 Your Name</label>
-            <input type="text" id="name" required="" placeholder="e.g. Tía Carol">
-          </div>
-          <div class="field">
-            <label for="email">📧 Your Email</label>
-            <input type="text" id="email" placeholder="e.g. tia.carol@email.com">
-          </div>
-        </div>
-        <div class="opt-out-row">
-          <span class="opt-out-text">Not feeling up for the exchange this year? No pressure at all. You can still vote on the spending limit: pick $50 or $75 below first, then come back and click this button.</span>
-          <button type="button" class="opt-out-btn" onclick="optOut()">💜 Thanks, but no thanks — love you!</button>
-        </div>
-        <div id="optOutBanner"></div>
-      </div>
-
-      <div class="vote-card">
-        <h2>🖱️ Quick Group Vote: What's the limit?</h2>
-        <div class="vote-hint">Pick ONE — this is just for the whole-family spending limit. Your pick gets saved into your response file below.</div>
-        <div class="vote-options">
-          <button type="button" class="vote-btn" data-amount="50" onclick="selectVote(this)">$50</button>
-          <button type="button" class="vote-btn" data-amount="75" onclick="selectVote(this)">$75</button>
-        </div>
-        <div class="vote-tally" id="voteTallyMsg">Your vote will be included when you save your response below. ⬇️</div>
-      </div>
-
-      <div class="card">
-        <div class="section-title lim">💸 Spending Limit</div>
-        <div class="field">
-          <label>Are you flexible or firm on the amount?</label>
-          <div class="radio-group" id="flexGroup">
-            <div class="radio-option">
-              <input type="radio" name="flex" id="flex-flexible" value="Flexible" checked="">
-              <label for="flex-flexible">🌊 Flexible</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="flex" id="flex-firm" value="Firm">
-              <label for="flex-firm">🔒 Firm</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field" id="flexibleFieldWrap">
-          <label for="suggestedLimit">Suggested limit ($)</label>
-          <div class="hint">A ballpark — open to adjusting.</div>
-          <input type="number" id="suggestedLimit" min="0" step="5" placeholder="e.g. 50">
-        </div>
-
-        <div class="field" id="firmFieldWrap" style="display:none;">
-          <label>Firm range ($)</label>
-          <div class="hint">e.g. between $50 and $75 — no going above or below.</div>
-          <div class="amount-inputs">
-            <input type="number" id="firmMin" min="0" step="5" placeholder="Min">
-            <span>a</span>
-            <input type="number" id="firmMax" min="0" step="5" placeholder="Max">
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="section-title santa">🎅 Santa Style</div>
-        <div class="field">
-          <label>Do you want your gift exchange to be a secret?</label>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" name="secretmode" id="secretmode-yes" value="Yes, keep it a secret" checked="">
-              <label for="secretmode-yes">🤫 Yes, secret</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="secretmode" id="secretmode-no" value="No, I want to know who my Santa is">
-              <label for="secretmode-no">👀 No, tell me</label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="section-title gifts">🎁 Gift Preferences</div>
-        <div class="field">
-          <label>Do you want to give gift ideas to your Santa?</label>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" name="ideas" id="ideas-yes" value="Yes" checked="">
-              <label for="ideas-yes">💡 Yes</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="ideas" id="ideas-no" value="No, surprise me">
-              <label for="ideas-no">🎊 Surprise me</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Would you like a meeting/chat with your gift recipient?</label>
-          <div class="hint">e.g. a quick call to understand what they'd like.</div>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" name="meeting" id="meeting-yes" value="Yes" checked="">
-              <label for="meeting-yes">📞 Yes</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="meeting" id="meeting-no" value="No">
-              <label for="meeting-no">😥 No</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Open to a variety / gift basket instead of one single gift?</label>
-          <div class="hint">e.g. a canasta with a few smaller fun items rather than one big thing.</div>
-          <div class="radio-group">
-            <div class="radio-option">
-              <input type="radio" name="variety" id="variety-yes" value="Yes, a gift basket / variety is great" checked="">
-              <label for="variety-yes">🧺 Yes, variety!</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" name="variety" id="variety-no" value="No, prefer one single gift">
-              <label for="variety-no">🎯 One gift</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="noBuy">🚫 Please DON'T buy me...</label>
-          <div class="hint">Duplicates, allergens, scents, or anything you're just not into this year.</div>
-          <textarea id="noBuy" placeholder="e.g. no candles, already have a waffle maker, allergic to shea butter..."></textarea>
-        </div>
-
-        <div class="field">
-          <label for="notes">📝 Anything else? (sizes, allergies, interests, ideas)</label>
-          <textarea id="notes" placeholder="Optional notes..."></textarea>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="section-title gifts">👶 Tell Me About Your Kid</div>
-        <div class="hint" style="margin-bottom:14px;">For little ones too young to fill this out themselves — add likes, dislikes, sizes, interests, and anything to avoid. Each kid is saved separately for whoever's shopping.</div>
-        <div id="kidEntries"></div>
-        <button type="button" class="opt-out-btn" onclick="addKidEntry()" style="margin-top:6px;">➕ Add a Kid</button>
-      </div>
-
-      <div class="toolbar" style="margin-bottom:16px;">
-        <button type="button" onclick="clearForm()">🔄 Clear Form</button>
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">🎉 ¡Guardar! Save My Response 🎉</button>
-      <div id="saveConfirmBanner" style="display:none;"></div>
-      <div class="toggle-link" onclick="showTab('results')">📊 See how everyone is voting →</div>
-    </form>
-  </div>
-
-  <div id="resultsView" style="display:none;">
-    <div class="toolbar">
-      <button type="button" id="refreshFromSheetBtn" onclick="loadFromSheet()">🔄 Refresh from Sheet</button>
-      <button type="button" onclick="exportAllCSV()">⬇️ Export All as CSV (for organizer)</button>
-      <button type="button" onclick="exportKidsCSV()">👶 Export Kids List (for organizer)</button>
-    </div>
-    <div id="voteSummary"></div>
-
-    <div id="quickTally"></div>
-
-<div id="responsesContainer">
-      <div class="empty-state">No responses yet — once people fill out the form, their answers will show up here automatically! 🎄</div>
-    </div>
-    <div class="section-title gifts" style="margin-top:22px;">👶 Kids — Quick Reference</div>
-    <div id="kidResponsesContainer">
-      <div class="empty-state">No kid entries yet.</div>
-    </div>
-    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
-  </div>
-
-    <div id="partyView" style="display:none;">
+  <div id="wishView">
     <div class="card">
-      <div class="section-title santa">🎉 Vote Party — Who's Voting What</div>
-      <div class="hint" style="margin-bottom:16px;">Load response files in the Responses tab first, then come here to see everyone's vote as a little character.</div>
-      <div class="party-columns">
-        <div class="party-col c50">
-          <h3>$50 Team</h3>
-          <div class="party-count" id="partyCount50">0 votes</div>
-          <div class="party-grid" id="partyGrid50"></div>
-        </div>
-        <div class="party-col c75">
-          <h3>$75 Team</h3>
-          <div class="party-count" id="partyCount75">0 votes</div>
-          <div class="party-grid" id="partyGrid75"></div>
-        </div>
+      <div class="section-title gifts">🎁 Wish List: What I Want &amp; Don't Want</div>
+      <div class="hint">Add a list for yourself or for one of your kids. Everyone can see these, so your Secret Santa can find them.</div>
+      <div class="wish-form">
+        <label for="wishFor">Gift for</label>
+        <input type="text" id="wishFor" placeholder="e.g. Tía Carol, or Mia">
+        <label for="wishWant">What I'd love</label>
+        <textarea id="wishWant" placeholder="Ideas, interests, favorite things, sizes..."></textarea>
+        <label for="wishDont">What I don't want</label>
+        <textarea id="wishDont" placeholder="Allergies, duplicates, things to skip..."></textarea>
+        <button type="button" class="submit-btn" id="wishBtn" onclick="submitWish()">➕ Add to Wish List</button>
+        <div class="wish-msg" id="wishMsg"></div>
       </div>
     </div>
-    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
+    <div class="card">
+      <div class="section-title santa">📋 Everyone's Wish Lists</div>
+      <div id="wishList"><div class="empty-state">Loading...</div></div>
+    </div>
+  </div>
+
+  <div id="qaView" style="display:none;">
+    <div class="card">
+      <div class="section-title lim">🙋 Ask Someone a Question</div>
+      <div class="hint">Post a question for a person and ask them to answer it here. Anyone can add a comment under a question.</div>
+      <div class="wish-form">
+        <label for="qaTo">Question for</label>
+        <input type="text" id="qaTo" placeholder="e.g. Tía Carol, or Mia">
+        <label for="qaText">Your question</label>
+        <textarea id="qaText" placeholder="e.g. What shoe size do you wear? Please answer when you can!"></textarea>
+        <button type="button" class="submit-btn" onclick="submitQA()">🙋 Post Question</button>
+        <div class="wish-msg" id="qaMsg"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title santa">💬 Questions &amp; Answers</div>
+      <div id="qaList"><div class="empty-state">Loading...</div></div>
+    </div>
+    <div class="toggle-link" onclick="showTab('wish')">← Back to Ideas &amp; Wish Lists</div>
+  </div>
+
+  <div id="askView" style="display:none;">
+    <div class="card">
+      <div class="section-title lim">💌 Ask the Coordinator</div>
+      <div class="hint">Want to know more about your person? Send a question and the coordinator will ask them for you. Only the coordinator sees this, and your person won't know it was you.</div>
+      <div class="wish-form">
+        <label for="askBy">Your name</label>
+        <input type="text" id="askBy" placeholder="Your name">
+        <label for="askQ">Your question</label>
+        <textarea id="askQ" placeholder="e.g. What shoe size does my person wear? Do they like candles?"></textarea>
+        <label for="askContact">How should the coordinator get back to you? (optional)</label>
+        <input type="text" id="askContact" placeholder="Email or phone, if different from your form">
+        <button type="button" class="submit-btn" id="askBtn" onclick="submitQuestion()">💌 Send Question</button>
+        <div class="wish-msg" id="askMsg"></div>
+      </div>
+    </div>
+    <div class="toggle-link" onclick="showTab('wish')">← Back to Ideas &amp; Wish Lists</div>
   </div>
 
   <div id="faqView" style="display:none;">
@@ -885,26 +761,21 @@ a { color: var(--color-link, var(--color-primary)); }</style>
       </div>
       <button type="button" class="submit-btn" onclick="addFaq()">➕ Add to FAQ</button>
     </div>
-    <div class="toggle-link" onclick="showTab('form')">← Back to form</div>
+    <div class="toggle-link" onclick="showTab('wish')">← Back to Ideas &amp; Wish Lists</div>
   </div>
 
 </div>
 
 <script>
   var defaultFaqs = [
-    { q: "What if I don't know what to get my person?", a: "Check their response for gift ideas and notes! If they said 'surprise me,' ask the organizer for hints, or lean on the 'Please don't buy me' list to avoid duplicates." },
-    { q: "Can I go over the spending limit?", a: "If the group picked 'Firm,' please stay within the agreed range. If you're 'Flexible,' a little over is usually fine, just don't go wild." },
-    { q: "What counts as a 'gift basket' / variety gift?", a: "Think a themed bundle, e.g. a coffee lover's basket (mug + beans + treat), a cozy night-in basket (blanket + candle + snacks), or a few small related items instead of one big gift." },
-    { q: "I want to change my answers after I submitted, what do I do?", a: "Just fill out the form again with your new answers and save a new file, tell the organizer to use your latest one." },
-    { q: "When is the exchange / reveal happening?", a: "Ask your organizer for the exact date, add it here once it's decided!" },
-    { q: "What happens if the group vote on the spending limit is a tie?", a: "Ask the organizer to break the tie, or default to the lower amount ($50) to keep things easy on everyone's wallet." },
-    { q: "Do I have to vote on the spending limit AND fill out the rest of the form?", a: "Yes, please do both! The vote decides the group's limit, and the rest of your answers tell your Santa about you specifically." },
-    { q: "I submitted my response but want to see everyone else's answers, where do I look?", a: "Click 'View all saved responses' at the bottom of the form (the organizer needs to have loaded everyone's files first)." },
-    { q: "Can kids / non-adults participate?", a: "Sure! Just have a parent help fill out the form, or set a lower spending limit vote if that works better for the family." },
-    { q: "What if I'm allergic to something but forgot to list it in 'Please DON'T buy me'?", a: "Go back to the Form tab, use 'Load My Response to Edit' to pull your saved file back in, add it, and save again." },
-    { q: "Is my email address shared with everyone?", a: "No, only the organizer collecting response files sees it, it's just so they can reach you if there are questions about your gift or wishlist." },
-    { q: "What if my gift recipient and I both want to meet up, but live far apart?", a: "A phone call or video chat works just as well as meeting in person, the goal is just getting a feel for what they'd like." },
-    { q: "Someone already left for the holidays, how do they vote or submit?", a: "They can still fill out this page from their phone or laptop anywhere, it works the same without needing to be home." }
+    { q: "What is the spending limit?", a: "$75 per gift." },
+    { q: "How do I ask someone a question?", a: "Use the Ask Someone tab. Post your question for that person and ask them to answer it there. Everyone can see the answers." },
+    { q: "How do I add my wish list?", a: "Open the Ideas & Wish Lists tab, fill in who the gift is for (you or one of your kids), and add what you'd love and what to skip. It shows up for everyone right away." },
+    { q: "Can I add a list for my kids too?", a: "Yes! Add a separate entry for each kid, and put their name in the 'Gift for' box." },
+    { q: "I don't know what to get my person. What now?", a: "Check their wish list first. If it's empty or you need more hints, use the Ask Coordinator tab and the coordinator will ask them for you." },
+    { q: "Will my person know I asked a question?", a: "No. Questions go only to the coordinator, who asks on your behalf without saying who it came from." },
+    { q: "I made a mistake or want to change my list.", a: "Use the remove button on your entry, then add it again with the corrections." },
+    { q: "When is the exchange / reveal happening?", a: "Ask the coordinator for the exact date, and add it here once it's decided!" }
   ];
   var faqs = JSON.parse(JSON.stringify(defaultFaqs));
 
@@ -927,6 +798,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     document.getElementById('faqQInput').value = '';
     document.getElementById('faqAInput').value = '';
     renderFaqs();
+  loadWishes();
   }
 
   function removeFaq(i) {
@@ -935,14 +807,15 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   }
 
   function showTab(tab) {
-    document.getElementById('formView').style.display = tab === 'form' ? 'block' : 'none';
-    document.getElementById('resultsView').style.display = tab === 'results' ? 'block' : 'none';
-    document.getElementById('partyView').style.display = tab === 'party' ? 'block' : 'none';
-    document.getElementById('faqView').style.display = tab === 'faq' ? 'block' : 'none';
-    document.getElementById('tabBtnForm').classList.toggle('active', tab === 'form');
-    document.getElementById('tabBtnFaq').classList.toggle('active', tab === 'faq');
-    if (tab === 'party') { renderParty(); }
-    if (tab === 'results' && sheetConfigured()) { loadFromSheet(); }
+    ['wish', 'qa', 'ask', 'faq'].forEach(function(t) {
+      var view = document.getElementById(t + 'View');
+      if (view) { view.style.display = tab === t ? 'block' : 'none'; }
+      var btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+      if (btn) { btn.classList.toggle('active', tab === t); }
+    });
+    if (tab === 'wish') { loadWishes(); }
+    if (tab === 'qa') { loadQA(); }
+    window.scrollTo(0, 0);
   }
 
   var selectedVote = null;
@@ -968,13 +841,11 @@ a { color: var(--color-link, var(--color-primary)); }</style>
       firmWrap.style.display = 'none';
     }
   }
-  flexRadios.forEach(function(r) { r.addEventListener('change', updateFlexFields); });
-  updateFlexFields();
 
   var responses = [];
   var kidResponses = [];
 
-  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzj0zLhSvK7q6fJBV97aT37m29pONnCCM9UKCwIkyaOq-KJOSc5TYckpvyFhOSNebaHEg/exec';
+  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbw8cEUsn6cUVYvMcMfyImXlCr-eyKZ5rfuQtPPTZTWEhwOBC0O0ulVmhRCRcJ7fWYMasA/exec';
 
   function sheetConfigured() {
     return SHEET_API_URL && SHEET_API_URL.indexOf('https://script.google.com') === 0;
@@ -1018,6 +889,195 @@ a { color: var(--color-link, var(--color-primary)); }</style>
       body: JSON.stringify({ type: 'delete', target: target, id: id })
     }).catch(function(err) { console.warn('Delete sync failed:', err); });
     setTimeout(loadFromSheet, 2500);
+  }
+
+  var wishes = [];
+
+  function postToSheet(payload) {
+    return fetch(SHEET_API_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  function fetchJson(url) {
+    return fetch(url).then(function(r) { return r.json(); });
+  }
+
+  function toCards(res) {
+    var cards = [];
+    (res.wishes || []).slice().reverse().forEach(function(w) {
+      cards.push({ src: 'wish', id: w.id, who: w.forWho, want: w.want, dont: w.dontWant, by: w.postedBy });
+    });
+    (res.responses || []).slice().reverse().forEach(function(r) {
+      if (!r.name || (!r.notes && !r.noBuy && r.optedOut)) { return; }
+      cards.push({ src: 'adult', id: r.id, who: r.name, want: r.notes, dont: r.noBuy, by: '' });
+    });
+    (res.kids || []).slice().reverse().forEach(function(k) {
+      if (!k.kidName) { return; }
+      var want = [k.likes ? String(k.likes) : '', k.sizes ? 'Sizes: ' + k.sizes : ''].filter(Boolean).join('\n');
+      cards.push({ src: 'kid', id: k.id, who: k.kidName, want: want, dont: k.dislikes, by: k.submittedByParent });
+    });
+    return cards.filter(function(c) { return !deletedIds[c.id]; });
+  }
+
+  function loadWishes() {
+    if (!sheetConfigured()) { renderWishes(); return; }
+    var empty = {};
+    Promise.all([
+      fetchJson(SHEET_API_URL + '?action=getWishes').catch(function() { return empty; }),
+      fetchJson(SHEET_API_URL).catch(function() { return empty; }),
+      fetchJson(SHEET_API_URL + '?action=getKids').catch(function() { return empty; })
+    ]).then(function(all) {
+      if (all[0] === empty && all[1] === empty && all[2] === empty) {
+        document.getElementById('wishList').innerHTML = '<div class="empty-state">Could not load wish lists right now. Try again in a minute.</div>';
+        return;
+      }
+      wishes = toCards({ wishes: all[0].wishes, responses: all[1].responses, kids: all[2].kids });
+      renderWishes();
+    });
+  }
+
+  function renderWishes() {
+    var el = document.getElementById('wishList');
+    if (!wishes.length) { el.innerHTML = '<div class="empty-state">No wish lists yet. Be the first!</div>'; return; }
+    el.innerHTML = wishes.map(function(w) {
+      var h = '<div class="wish-card"><button class="faq-del" onclick="removeWish(\'' + w.src + '\', \'' + w.id + '\')">&#10005; remove</button>';
+      h += '<div class="who">' + escapeHtml(String(w.who || '')) + (w.src === 'kid' ? ' &#128118;' : '') + '</div>';
+      if (w.want) { h += '<div class="lbl want">&#10084; I\'d love</div><div style="white-space:pre-line;">' + escapeHtml(String(w.want)) + '</div>'; }
+      if (w.dont) { h += '<div class="lbl dont">&#10060; Please don\'t</div><div style="white-space:pre-line;">' + escapeHtml(String(w.dont)) + '</div>'; }
+      if (!w.want && !w.dont) { h += '<div class="by">No ideas added yet.</div>'; }
+      return h + '</div>';
+    }).join('');
+  }
+
+  function submitWish() {
+    var msg = document.getElementById('wishMsg');
+    var forWho = document.getElementById('wishFor').value.trim();
+    var want = document.getElementById('wishWant').value.trim();
+    var dont = document.getElementById('wishDont').value.trim();
+    if (!forWho || (!want && !dont)) { msg.textContent = 'Please fill in who the gift is for and at least one of the two lists.'; return; }
+    if (!sheetConfigured()) { msg.textContent = 'The sheet is not connected.'; return; }
+    var item = { id: newId(), forWho: forWho, postedBy: '', want: want, dontWant: dont };
+    postToSheet(Object.assign({ type: 'wish' }, item)).then(function() {
+      wishes.unshift({ src: 'wish', id: item.id, who: item.forWho, want: item.want, dont: item.dontWant, by: item.postedBy });
+      renderWishes();
+      document.getElementById('wishFor').value = '';
+      document.getElementById('wishWant').value = '';
+      document.getElementById('wishDont').value = '';
+      msg.textContent = 'Added! \u2705';
+      setTimeout(loadWishes, 2500);
+    }).catch(function() { msg.textContent = 'Something went wrong. Please try again.'; });
+  }
+
+  function removeWish(src, id) {
+    if (!confirm('Remove this post for everyone?')) { return; }
+    deletedIds[id] = true;
+    wishes = wishes.filter(function(w) { return w.id !== id; });
+    renderWishes();
+    postToSheet({ type: 'delete', target: src, id: id });
+    setTimeout(loadWishes, 2500);
+  }
+
+  var qaItems = [];
+
+  function loadQA() {
+    var el = document.getElementById('qaList');
+    if (!sheetConfigured()) { renderQA(); return; }
+    fetchJson(SHEET_API_URL + '?action=getQA').then(function(res) {
+      qaItems = (res.qa || []).slice().reverse().filter(function(q) { return !deletedIds[q.id]; });
+      qaItems.forEach(function(q) { q.comments = (q.comments || []).filter(function(c) { return !deletedIds[c.id]; }); });
+      renderQA();
+    }).catch(function() {
+      el.innerHTML = '<div class="empty-state">Could not load questions right now. Try again in a minute.</div>';
+    });
+  }
+
+  function renderQA() {
+    var el = document.getElementById('qaList');
+    if (!qaItems.length) { el.innerHTML = '<div class="empty-state">No questions yet.</div>'; return; }
+    el.innerHTML = qaItems.map(function(q) {
+      var h = '<div class="wish-card"><button class="faq-del" data-id="' + q.id + '" onclick="removeQA(this.dataset.id)">&#10005; remove</button>';
+      h += '<div class="who">For ' + escapeHtml(String(q.toWho || '')) + '</div>';
+      h += '<div style="white-space:pre-line;margin-top:6px;">' + escapeHtml(String(q.question || '')) + '</div>';
+      if (q.answer) {
+        h += '<div class="lbl want">&#9989; Answer</div><div style="white-space:pre-line;">' + escapeHtml(String(q.answer)) + '</div>';
+      }
+      (q.comments || []).forEach(function(c) {
+        h += '<div style="margin-top:10px;padding:8px 10px;background:#fff7ea;border-radius:8px;">';
+        h += '<button class="faq-del" data-id="' + c.id + '" onclick="removeComment(this.dataset.id)" title="Remove comment">&#10005;</button>';
+        h += '<b>' + escapeHtml(String(c.name || 'Someone')) + ':</b> <span style="white-space:pre-line;">' + escapeHtml(String(c.text || '')) + '</span></div>';
+      });
+      h += '<input type="text" id="qaCn_' + q.id + '" placeholder="Your name (optional)" style="margin-top:12px;margin-bottom:8px;">';
+      h += '<textarea id="qaCt_' + q.id + '" placeholder="Write a comment or answer..." style="margin-bottom:8px;"></textarea>';
+      h += '<button type="button" class="submit-btn" data-id="' + q.id + '" onclick="submitComment(this.dataset.id)">&#128172; Post Comment</button>';
+      return h + '</div>';
+    }).join('');
+  }
+
+  function submitQA() {
+    var msg = document.getElementById('qaMsg');
+    var to = document.getElementById('qaTo').value.trim();
+    var text = document.getElementById('qaText').value.trim();
+    if (!to || !text) { msg.textContent = 'Please fill in who the question is for and your question.'; return; }
+    if (!sheetConfigured()) { msg.textContent = 'The sheet is not connected.'; return; }
+    var item = { id: newId(), toWho: to, question: text, answer: '' };
+    postToSheet(Object.assign({ type: 'qa' }, item)).then(function() {
+      qaItems.unshift(item);
+      renderQA();
+      document.getElementById('qaTo').value = '';
+      document.getElementById('qaText').value = '';
+      msg.textContent = 'Posted! \u2705';
+      setTimeout(loadQA, 2500);
+    }).catch(function() { msg.textContent = 'Something went wrong. Please try again.'; });
+  }
+
+  function submitComment(qid) {
+    var nameEl = document.getElementById('qaCn_' + qid);
+    var textEl = document.getElementById('qaCt_' + qid);
+    var text = textEl ? textEl.value.trim() : '';
+    if (!text) { return; }
+    var c = { id: newId(), qid: qid, name: nameEl ? nameEl.value.trim() : '', text: text };
+    postToSheet(Object.assign({ type: 'comment' }, c)).then(function() {
+      qaItems.forEach(function(q) {
+        if (q.id === qid) { q.comments = (q.comments || []).concat([{ id: c.id, name: c.name, text: c.text }]); }
+      });
+      renderQA();
+      setTimeout(loadQA, 2500);
+    });
+  }
+
+  function removeComment(id) {
+    if (!confirm('Remove this comment for everyone?')) { return; }
+    deletedIds[id] = true;
+    qaItems.forEach(function(q) { q.comments = (q.comments || []).filter(function(c) { return c.id !== id; }); });
+    renderQA();
+    postToSheet({ type: 'delete', target: 'comment', id: id });
+    setTimeout(loadQA, 2500);
+  }
+
+  function removeQA(id) {
+    if (!confirm('Remove this question for everyone?')) { return; }
+    deletedIds[id] = true;
+    qaItems = qaItems.filter(function(q) { return q.id !== id; });
+    renderQA();
+    postToSheet({ type: 'delete', target: 'qa', id: id });
+    setTimeout(loadQA, 2500);
+  }
+
+  function submitQuestion() {
+    var msg = document.getElementById('askMsg');
+    var by = document.getElementById('askBy').value.trim();
+    var q = document.getElementById('askQ').value.trim();
+    if (!by || !q) { msg.textContent = 'Please add your name and your question.'; return; }
+    if (!sheetConfigured()) { msg.textContent = 'The sheet is not connected.'; return; }
+    postToSheet({ type: 'question', id: newId(), askedBy: by, question: q, contact: document.getElementById('askContact').value.trim() })
+      .then(function() {
+        document.getElementById('askQ').value = '';
+        msg.textContent = 'Sent! The coordinator will ask for you. \u2705';
+      }).catch(function() { msg.textContent = 'Something went wrong. Please try again.'; });
   }
 
   function loadFromSheet() {
@@ -1131,7 +1191,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     }, 1200);
   }
 
-  document.getElementById('pollForm').addEventListener('submit', function(e) {
+  (document.getElementById('pollForm') || document.createElement('form')).addEventListener('submit', function(e) {
     e.preventDefault();
     var name = document.getElementById('name').value.trim();
     if (!name) { alert('Please enter your name! / Escribe tu nombre!'); return; }
