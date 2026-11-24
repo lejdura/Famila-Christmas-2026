@@ -798,7 +798,6 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     document.getElementById('faqQInput').value = '';
     document.getElementById('faqAInput').value = '';
     renderFaqs();
-  loadWishes();
   }
 
   function removeFaq(i) {
@@ -1320,6 +1319,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   });
 
   renderFaqs();
+  loadWishes();
 
   function removeResponse(id) {
     if (!confirm('Remove this response for everyone?')) { return; }
