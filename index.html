@@ -845,7 +845,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
   var responses = [];
   var kidResponses = [];
 
-  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbw8cEUsn6cUVYvMcMfyImXlCr-eyKZ5rfuQtPPTZTWEhwOBC0O0ulVmhRCRcJ7fWYMasA/exec';
+  var SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyQDVEVg9xKdOJdSzVwrobVxMz3ey1FBG1N4t4M_p0qGJ4QsIRfW_x887u5Pri160a_Ig/exec';
 
   function sheetConfigured() {
     return SHEET_API_URL && SHEET_API_URL.indexOf('https://script.google.com') === 0;
@@ -930,9 +930,37 @@ a { color: var(--color-link, var(--color-primary)); }</style>
     return cards.filter(function(c) { return !deletedIds[c.id]; });
   }
 
+  function describeError(err) {
+    var m = String(err && err.message ? err.message : err || '');
+    if (m === 'timeout') { return 'The sheet took too long to answer.'; }
+    if (/Unexpected token|JSON|<!DOCTYPE/i.test(m)) { return 'Google sent back a sign-in or error page instead of the data. In Apps Script, set "Who has access" to Anyone and redeploy.'; }
+    if (/Failed to fetch|NetworkError|Load failed/i.test(m)) { return 'The page could not reach the Google script. Check the web address and that access is set to Anyone.'; }
+    return m ? ('(' + m + ')') : '';
+  }
+
   function loadWishes() {
     var el = document.getElementById('wishList');
     if (!sheetConfigured()) { renderWishes(); return; }
+    fetchJson(SHEET_API_URL + '?action=getAll').then(function(res) {
+      if (res && res.wishes && res.responses && res.kids) {
+        wishes = toCards(res);
+        renderWishes();
+        if (res.errors && res.errors.length) {
+          el.insertAdjacentHTML('beforeend', '<div class="empty-state">Some lists could not load (' + escapeHtml(res.errors.join('; ')) + '). <a href="#" onclick="loadWishes(); return false;">Try again</a></div>');
+        }
+        return;
+      }
+      if (res && res.success === false) { throw new Error(res.error || 'script error'); }
+      loadWishesLegacy();   // older script without getAll
+    }).catch(function(err) {
+      console.warn('Load failed:', err);
+      el.innerHTML = '<div class="empty-state">Could not load wish lists right now. ' + escapeHtml(describeError(err)) + ' <a href="#" onclick="loadWishes(); return false;">Try again</a></div>';
+    });
+  }
+
+  function loadWishesLegacy() {
+    var el = document.getElementById('wishList');
+    var lastErr = null;
     var parts = { wishes: null, responses: null, kids: null };
     var urls = {
       wishes: SHEET_API_URL + '?action=getWishes',
@@ -946,7 +974,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
       wishes = toCards(parts);
       if (!wishes.length && pending > 0) { return; }   // keep "Loading..." until something arrives
       if (!wishes.length && errors > 0) {
-        el.innerHTML = '<div class="empty-state">Could not load wish lists right now. <a href="#" onclick="loadWishes(); return false;">Try again</a></div>';
+        el.innerHTML = '<div class="empty-state">Could not load wish lists right now. ' + escapeHtml(describeError(lastErr)) + ' <a href="#" onclick="loadWishes(); return false;">Try again</a></div>';
         return;
       }
       renderWishes();
@@ -960,6 +988,7 @@ a { color: var(--color-link, var(--color-primary)); }</style>
         parts[key] = (res && res[key]) || [];
       }).catch(function(err) {
         errors++;
+        lastErr = err;
         console.warn('Load ' + key + ' failed:', err);
       }).then(function() {
         pending--;
